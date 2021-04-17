@@ -1,13 +1,17 @@
+// Load .env variables when in dev mode
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
-
+// Load Express.js
 const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
 
+const PORT = process.env.PORT || 3001
+
 const indexRouter = require('./routes/index')
 
+// Set view engine and folders
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
 app.set('layout', 'layouts/layout')
@@ -25,4 +29,6 @@ db.once('open', () => console.log('Connected to Mongoose'))
 app.use('/', indexRouter)
 
 // run web server
-app.listen(process.env.PORT || 3000)
+app.listen(PORT, () => {
+    console.log(`Web Server started on port ${PORT}`)
+})
