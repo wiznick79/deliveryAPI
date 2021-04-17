@@ -13,7 +13,9 @@ app.set('views', __dirname + '/views')
 app.set('layout', 'layouts/layout')
 app.use(expressLayouts)
 app.use(express.static('public'))
+app.use(express.urlencoded({ extended: false }))
 
+// Manage database connection using Mongoose 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
@@ -22,4 +24,5 @@ db.once('open', () => console.log('Connected to Mongoose'))
 
 app.use('/', indexRouter)
 
+// run web server
 app.listen(process.env.PORT || 3000)
