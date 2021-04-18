@@ -7,7 +7,13 @@ const Navigation = (props) => {
     console.log(props);
     return (
         <Navbar fixed="top" variant="dark" expand="md">
-            <Navbar.Brand href="/">Glazed</Navbar.Brand>
+            <Navbar.Brand href="/">
+                <img src="/favicon-32x32.png" 
+                width="30" height="30" 
+                className="d-inline-block align-top"
+                alt="Glazed logo" 
+                />{' '}
+                Glazed</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
