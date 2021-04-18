@@ -19,6 +19,10 @@ export default class RegisterForm extends React.Component {
                                 <label>Password</label>
                                 <input type="password" id="password" name="password" className="form-control" placeholder="Enter a password" required />
                             </div>
+                            <div className="form-group">
+                                <label>Confirm password</label>
+                                <input type="password" id="password2" name="password2" className="form-control" placeholder="Re-enter your password" required />
+                            </div>
                             <button type="submit" className="btn btn-primary btn-block">Register</button>
                         </form>
                     <p className="forgot-password text-right">

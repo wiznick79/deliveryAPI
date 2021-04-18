@@ -7,8 +7,6 @@ const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
 
-const PORT = process.env.PORT || 3001
-
 const indexRouter = require('./routes/index')
 
 // Set view engine and folders
@@ -17,7 +15,10 @@ app.set('views', __dirname + '/views')
 app.set('layout', 'layouts/layout')
 app.use(expressLayouts)
 app.use(express.static('public'))
-app.use(express.urlencoded({ extended: false }))
+// Parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true }))
+// Parse JSON bodies
+app.use(express.json())
 
 // Manage database connection using Mongoose 
 const mongoose = require('mongoose')
@@ -29,6 +30,7 @@ db.once('open', () => console.log('Connected to Mongoose'))
 app.use('/', indexRouter)
 
 // run web server
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`Web Server started on port ${PORT}`)
 })
