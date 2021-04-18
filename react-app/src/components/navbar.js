@@ -13,7 +13,7 @@ const Navigation = (props) => {
                 className="d-inline-block align-top"
                 alt="Glazed logo" 
                 />{' '}
-                Glazed</Navbar.Brand>
+                glazed</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
