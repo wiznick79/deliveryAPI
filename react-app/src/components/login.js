@@ -9,11 +9,11 @@ export default class LoginForm extends React.Component {
                         <form action="/login" method="POST">
                             <div className="form-group">
                                 <label>Email address</label>
-                                <input type="email" id="email" name="email" className="form-control" required />
+                                <input type="email" id="email" name="email" className="form-control" placeholder="Your email address" required />
                             </div>
                             <div className="form-group">
                                 <label>Password</label>
-                                <input type="password" id="password" name="password" className="form-control" required />
+                                <input type="password" id="password" name="password" className="form-control" placeholder="Your password" required />
                             </div>
                             <button type="submit" className="btn btn-primary btn-block">Login</button>
                         </form>
