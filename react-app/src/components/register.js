@@ -9,19 +9,19 @@ export default class RegisterForm extends React.Component {
                     <h3>Register</h3>
                         <Form action="/register" method="POST">
                             <Form.Group>
-                                <Form.Label>Name</Form.Label>
+                                <Form.Label className="formlabel">Name</Form.Label>
                                 <Form.Control type="name" id="name" name="name" placeholder="Your name" required />
                             </Form.Group>
                             <Form.Group>
-                                <Form.Label>Email</Form.Label>
+                                <Form.Label className="formlabel">Email</Form.Label>
                                 <Form.Control type="email" id="email" name="email" placeholder="Your email address" required />
                             </Form.Group>
                             <Form.Group>
-                                <Form.Label>Password</Form.Label>
+                                <Form.Label className="formlabel">Password</Form.Label>
                                 <Form.Control type="password" id="password" name="password" placeholder="Enter a password" required />
                             </Form.Group>
                             <Form.Group>
-                                <Form.Label>Confirm password</Form.Label>
+                                <Form.Label className="formlabel">Confirm password</Form.Label>
                                 <Form.Control type="password" id="password2" name="password2" placeholder="Re-enter your password" required />
                             </Form.Group>
                             <Button type="submit" className="btn btn-primary btn-block">Register</Button>

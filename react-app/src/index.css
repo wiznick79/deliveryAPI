@@ -24,7 +24,7 @@ code {
   box-sizing: border-box;
 }
 
-h1,h2,h3,h4,h5,h6,label,span {
+h1,h2,h3,h4,h5,h6, .formlabel,span {
   font-weight: 500;
   font-family: 'ZonaProBold', 'Segoe UI', 'Fira Sans', sans-serif;
 }

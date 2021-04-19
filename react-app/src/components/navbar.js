@@ -1,6 +1,6 @@
 import React from 'react';
 import './navbar.css';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Image } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 
 const Navigation = (props) => {
@@ -8,10 +8,10 @@ const Navigation = (props) => {
     return (
         <Navbar fixed="top" variant="dark" expand="md">
             <Navbar.Brand href="/">
-                <img src="/favicon-32x32.png" 
+                <Image src="/favicon-32x32.png" 
                 width="30" height="30" 
                 className="d-inline-block align-top"
-                alt="Glazed logo" 
+                alt="Glazed logo"
                 />{' '}
                 glazed</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
