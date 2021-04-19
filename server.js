@@ -21,11 +21,36 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 // Manage database connection using Mongoose 
+const db = require('./models')
+const Role = db.role;
+
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-const db = mongoose.connection
-db.on('error', error => console.error(error))
-db.once('open', () => console.log('Connected to Mongoose'))
+const dbconn = mongoose.connection
+dbconn.on('error', error => console.error(error))
+dbconn.once('open', () => {
+    console.log('Connected to Mongoose');
+    dbinit();
+})
+// Adds the user and admin roles in the database, if they don't exist
+function dbinit() {
+    Role.estimatedDocumentCount((err, count) => {
+        if (!err && count === 0) {
+            new Role({name: "user"}).save(err => {
+                if (err) {
+                    console.log("error", err);
+                }
+                console.log("Added 'user' to roles");
+            });
+            new Role({name: "admin"}).save(err => {
+                if (err) {
+                    console.log("error", err);
+                }
+                console.log("Added 'admin' to roles");
+            });
+        }
+    })
+}
 
 app.use('/', indexRouter)
 
