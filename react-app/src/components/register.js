@@ -1,4 +1,5 @@
 import React from 'react';
+import { Form, Button } from 'react-bootstrap';
 
 export default class RegisterForm extends React.Component {
     render() {
@@ -6,28 +7,28 @@ export default class RegisterForm extends React.Component {
             <div className="auth-wrapper">
                 <div className="auth-inner">
                     <h3>Register</h3>
-                        <form action="/register" method="POST">
-                            <div className="form-group">
-                                <label>Name</label>
-                                <input type="name" id="name" name="name" className="form-control" placeholder="Your name" required />
-                            </div>
-                            <div className="form-group">
-                                <label>Email</label>
-                                <input type="email" id="email" name="email" className="form-control" placeholder="Your email address" required />
-                            </div>
-                            <div className="form-group">
-                                <label>Password</label>
-                                <input type="password" id="password" name="password" className="form-control" placeholder="Enter a password" required />
-                            </div>
-                            <div className="form-group">
-                                <label>Confirm password</label>
-                                <input type="password" id="password2" name="password2" className="form-control" placeholder="Re-enter your password" required />
-                            </div>
-                            <button type="submit" className="btn btn-primary btn-block">Register</button>
-                        </form>
-                    <p className="forgot-password text-right">
+                        <Form action="/register" method="POST">
+                            <Form.Group>
+                                <Form.Label>Name</Form.Label>
+                                <Form.Control type="name" id="name" name="name" placeholder="Your name" required />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control type="email" id="email" name="email" placeholder="Your email address" required />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control type="password" id="password" name="password" placeholder="Enter a password" required />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Confirm password</Form.Label>
+                                <Form.Control type="password" id="password2" name="password2" placeholder="Re-enter your password" required />
+                            </Form.Group>
+                            <Button type="submit" className="btn btn-primary btn-block">Register</Button>
+                        </Form>
+                    <Form.Text className="text-muted text-right">
                         Already registered? <a href="/login">Login</a>
-                    </p>                    
+                    </Form.Text>                    
                 </div>
             </div>
         );
