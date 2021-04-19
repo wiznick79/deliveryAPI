@@ -9,6 +9,7 @@ export default class Home extends Component {
         <div className="lander">
           <img src="icon-512x512.png" alt="glazed logo" class="glazed-logo"></img>
           <h1>glazed</h1>
+          <h2>TEST</h2>
         </div>
       </Container>
     );
