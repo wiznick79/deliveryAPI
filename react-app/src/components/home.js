@@ -7,8 +7,9 @@ export default class Home extends Component {
     return (
       <Container>      
         <div className="lander">
-          <h1>Welcome to Glazed Solutions</h1>
-        </div>      
+          <img src="icon-512x512.png" alt="glazed logo"></img>
+          <h1>glazed</h1>
+        </div>
       </Container>
     );
   }

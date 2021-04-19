@@ -1,24 +1,20 @@
 const mongoose = require('mongoose');
 
-const User = mongoose.model(
-  "User",
+const Store = mongoose.model(
+  "Store",
   new mongoose.Schema({
     name: {
         type: String,
         required: true
     },
-    email: {
-        type: String,
+    open: {
+        type: Date,
         required: true
     },
-    password: {
-        type: String,
+    close: {
+        type: Date,
         required: true
     },
-    roles: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Role"
-    }],
     created_at: {
         type: Date,
         default: Date.now

@@ -1,10 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
+@font-face {
+  font-family: ZonaProBold;
+  src: url(ZonaPro-Bold.otf);
+}
 
 body {
   margin: 0;
-  background: rgb(37, 96, 242) !important;
+  background: rgb(60, 101, 206) !important;
   min-height: 100vh;
   display: flex;
+  padding-top: 57px;
   font-weight: 400;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Fira Sans', 'Cantarell', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -22,7 +27,7 @@ code {
 
 h1,h2,h3,h4,h5,h6,label,span {
   font-weight: 500;
-  font-family: 'Fira Sans', sans-serif;
+  font-family: 'ZonaProBold', 'Segoe UI', 'Fira Sans', sans-serif;
 }
 
 body, html, .App, #root, .auth-wrapper {
@@ -45,9 +50,18 @@ body, html, .App, #root, .auth-wrapper {
   width: 400px;
   margin: auto;
   background: #ffffff;  
-  padding: 30px 35px 40px 35px;
-  border-radius: 20px;
+  padding: 30px 25px;
+  border-radius: 15px;
   transition: all .3s;
+}
+
+@media screen and (max-width: 480px) {
+  .auth-inner {
+    width: 100vw;
+    height: 100vh;
+    padding: 15px 15px;
+    border-radius: 0;
+  }
 }
 
 .auth-wrapper .form-control:focus {
