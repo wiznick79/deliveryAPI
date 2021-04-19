@@ -25,7 +25,7 @@ const db = require('./models')
 const Role = db.role;
 
 const mongoose = require('mongoose')
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 const dbconn = mongoose.connection
 dbconn.on('error', error => console.error(error))
 dbconn.once('open', () => {

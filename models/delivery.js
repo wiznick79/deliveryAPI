@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const User = require('./user');
+const Slot = require('./slot');
+const Store = require('./store');
 const ObjectId = mongoose.Schema.ObjectId;
 
 const Delivery = mongoose.model(

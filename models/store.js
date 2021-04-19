@@ -5,16 +5,23 @@ const Store = mongoose.model(
   new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
-    open: {
-        type: Date,
-        required: true
-    },
-    close: {
-        type: Date,
-        required: true
-    },
+    horario: [{
+        day: {
+            type: String,
+            required: true
+        },
+        open: {
+            type: String,
+            required: true
+        },
+        close: {
+            type: String,
+            required: true
+        }
+    }],
     created_at: {
         type: Date,
         default: Date.now
@@ -22,4 +29,4 @@ const Store = mongoose.model(
   })
 );
 
-module.exports = User;
+module.exports = Store;
