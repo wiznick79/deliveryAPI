@@ -7,8 +7,6 @@ const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
 
-const indexRouter = require('./routes/index')
-
 // Set view engine and folders
 app.use(expressLayouts)
 app.set('view engine', 'ejs')
@@ -52,7 +50,10 @@ function dbinit() {
     })
 }
 
-app.use('/', indexRouter)
+// Routes
+app.use('/', require('./routes/index'))
+app.use('/register', require('./routes/register'))
+app.use('/login', require('./routes/login'))
 
 // run web server
 const PORT = process.env.PORT || 3001
