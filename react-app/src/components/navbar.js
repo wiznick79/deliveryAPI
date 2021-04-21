@@ -4,7 +4,6 @@ import { Navbar, Nav, Image } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 
 const Navigation = (props) => {
-    console.log(props);
     return (
         <Navbar fixed="top" variant="dark" expand="md">
             <Navbar.Brand href="/">

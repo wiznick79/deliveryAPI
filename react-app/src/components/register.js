@@ -1,12 +1,14 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 
+let error = (new URLSearchParams(window.location.search)).get("error")
 export default class RegisterForm extends React.Component {
     render() {
         return (
-            <div className="auth-wrapper">
-                <div className="auth-inner">
+            <div className="auth-wrapper">                
+                <div className="auth-inner">                
                     <h3>Register</h3>
+                    <div className="text-danger text-center">{ error }</div>
                         <Form action="/register" method="POST">
                             <Form.Group>
                                 <Form.Label className="formlabel">Name</Form.Label>
@@ -28,7 +30,7 @@ export default class RegisterForm extends React.Component {
                         </Form>
                     <Form.Text className="text-muted text-right">
                         Already registered? <a href="/login">Login</a>
-                    </Form.Text>                    
+                    </Form.Text>                                        
                 </div>
             </div>
         );

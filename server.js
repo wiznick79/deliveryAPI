@@ -3,26 +3,33 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
 // Load Express.js
-const express = require('express')
-const app = express()
-const expressLayouts = require('express-ejs-layouts')
+const express = require('express');
+const app = express();
+const expressLayouts = require('express-ejs-layouts');
+
+// Passport
+const passport = require('passport');
+require('./config/passport')(passport);
+
+const flash = require('connect-flash');
+const session = require('express-session');
 
 // Set view engine and folders
-app.use(expressLayouts)
-app.set('view engine', 'ejs')
-app.set('views', __dirname + '/views')
-app.set('layout', 'layouts/layout')
-app.use(express.static('public'))
+app.use(expressLayouts);
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
+app.set('layout', 'layouts/layout');
+app.use(express.static('public'));
 // Parse URL-encoded bodies
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 // Parse JSON bodies
-app.use(express.json())
+app.use(express.json());
 
 // Manage database connection using Mongoose 
-const db = require('./models')
+const db = require('./models');
 const Role = db.role;
 
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
     .then(() => {
         console.log('Connected to Mongoose');
@@ -48,15 +55,39 @@ function dbinit() {
             });
         }
     })
-}
+};
+
+// Express session
+app.use(session({
+    secret: 'dark secret',
+    resave: true,
+    saveUninitialized: true,
+    cookie: { secure: true}
+}));
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Connect flash
+app.use(flash());
+
+// Global vars for msgs
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    next();
+});
 
 // Routes
-app.use('/', require('./routes/index'))
-app.use('/register', require('./routes/register'))
-app.use('/login', require('./routes/login'))
+app.use('/', require('./routes/index'));
+app.use('/register', require('./routes/register'));
+app.use('/login', require('./routes/login'));
+app.use('/logout', require('./routes/logout'));
 
 // run web server
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`)
-})
+});
