@@ -4,7 +4,7 @@ const passport = require('passport');
 
 router.post('/', (req, res, next) => {
     passport.authenticate('local', {
-        successRedirect: '/userdashboard',
+        successRedirect: '/user/dashboard',
         failureRedirect: '/login',
         failureFlash: true
     })(req, res, next);

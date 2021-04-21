@@ -1,6 +1,6 @@
 import React from 'react';
 import './navbar.css';
-import { Navbar, Nav, Image } from 'react-bootstrap';
+import { Navbar, Nav, Image, Form, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 
 const Navigation = (props) => {
@@ -19,6 +19,9 @@ const Navigation = (props) => {
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/login">Login</Nav.Link>
                     <Nav.Link href="/register">Register</Nav.Link>
+                    <Form action="/logout" method="POST" id="logout-form" >
+                        <Button type="submit" className="link">Logout</Button>
+                    </Form>                    
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

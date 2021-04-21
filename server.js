@@ -5,21 +5,16 @@ if (process.env.NODE_ENV !== 'production') {
 // Load Express.js
 const express = require('express');
 const app = express();
-const expressLayouts = require('express-ejs-layouts');
 
 // Passport
 const passport = require('passport');
 require('./config/passport')(passport);
 
-const flash = require('connect-flash');
+// const flash = require('connect-flash');
 const session = require('express-session');
 
-// Set view engine and folders
-app.use(expressLayouts);
-app.set('view engine', 'ejs');
-app.set('views', __dirname + '/views');
-app.set('layout', 'layouts/layout');
 app.use(express.static('public'));
+
 // Parse URL-encoded bodies
 app.use(express.urlencoded({ extended: true }));
 // Parse JSON bodies
@@ -69,6 +64,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+/*
 // Connect flash
 app.use(flash());
 
@@ -79,11 +75,12 @@ app.use((req, res, next) => {
     res.locals.error = req.flash('error');
     next();
 });
+*/
 
 // Routes
 app.use('/', require('./routes/index'));
-app.use('/register', require('./routes/register'));
 app.use('/login', require('./routes/login'));
+app.use('/register', require('./routes/register'));
 app.use('/logout', require('./routes/logout'));
 
 // run web server

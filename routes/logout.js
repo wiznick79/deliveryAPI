@@ -2,8 +2,8 @@ const express = require('express')
 const router = express.Router()
 
 // Logout
-router.get('/', (req, res) => {
-    console.log('user logged out');
+router.use('/', (req, res) => {
+    console.log('user logged out %o', req.body.name);
     req.logout();    
     res.redirect('/login');
 });
