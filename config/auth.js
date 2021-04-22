@@ -9,6 +9,7 @@ module.exports = {
     },
 
     ensureAuthenticatedAdmin: function(req, res, next) {
+        console.log(req.isAuthenticated() && req.user.role === "admin");
         if (req.isAuthenticated() && req.user.role === "admin") {
             return next();
         }

@@ -53,13 +53,13 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.use('/', require('./routes/index'));
 app.use('/login', require('./routes/login'));
 app.use('/register', require('./routes/register'));
 app.use('/logout', require('./routes/logout'));
 app.use('/store', require('./routes/store.routes'));
 app.use('/delivery', require('./routes/delivery.routes'));
 app.use('/slot', require('./routes/slot.routes'));
+app.use('/', require('./routes/index'));
 
 // run web server
 const PORT = process.env.PORT || 3001

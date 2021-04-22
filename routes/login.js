@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 
-router.post('/', (req, res, next) => {
-    passport.authenticate('local', {
-        successRedirect: '/user/dashboard',
+router.post('/', passport.authenticate('local', {        
         failureRedirect: '/login',
         failureFlash: true
-    })(req, res, next);
-});
+    }), (req, res) => {
+        console.log(req.user.role === "admin" ? 'Admin logged in' : 'User logged in')
+        res.redirect(req.user.role === "admin" ? '/admin/dashboard' : '/user/dashboard');
+    }
+);
 
 module.exports = router;
