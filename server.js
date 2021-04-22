@@ -21,36 +21,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Manage database connection using Mongoose 
-const db = require('./models');
-const Role = db.role;
-
+const db = require('./config/db.js')
 const mongoose = require('mongoose');
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false })
     .then(() => {
         console.log('Connected to Mongoose');
-        dbinit();
+        db.dbinit();
     })    
     .catch(error => console.error(error))    
-
-// Adds the user and admin roles in the database, if they don't exist
-function dbinit() {
-    Role.estimatedDocumentCount((err, count) => {
-        if (!err && count === 0) {
-            new Role({name: "user"}).save(err => {
-                if (err) {
-                    console.log("error", err);
-                }
-                console.log("Added 'user' to roles");
-            });
-            new Role({name: "admin"}).save(err => {
-                if (err) {
-                    console.log("error", err);
-                }
-                console.log("Added 'admin' to roles");
-            });
-        }
-    })
-};
 
 // Express session
 app.use(session({
@@ -80,6 +58,9 @@ app.use('/', require('./routes/index'));
 app.use('/login', require('./routes/login'));
 app.use('/register', require('./routes/register'));
 app.use('/logout', require('./routes/logout'));
+app.use('/store', require('./routes/store.routes'));
+app.use('/delivery', require('./routes/delivery'));
+app.use('/slot', require('./routes/slot'));
 
 // run web server
 const PORT = process.env.PORT || 3001

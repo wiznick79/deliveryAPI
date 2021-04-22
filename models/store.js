@@ -8,20 +8,10 @@ const Store = mongoose.model(
         required: true,
         unique: true
     },
-    horario: [{
-        day: {
-            type: String,
-            required: true
-        },
-        open: {
-            type: String,
-            required: true
-        },
-        close: {
-            type: String,
-            required: true
-        }
-    }],
+    horario: {
+        type: Array, 
+        default: []
+    },
     created_at: {
         type: Date,
         default: Date.now
