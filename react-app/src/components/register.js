@@ -9,7 +9,7 @@ export default class RegisterForm extends React.Component {
                 <div className="auth-inner">                
                     <h3>Register</h3>
                     <div className="text-danger text-center">{ error }</div>
-                        <Form action="/register" method="POST">
+                        <Form action="/user/register" method="POST">
                             <Form.Group>
                                 <Form.Label className="formlabel">Name</Form.Label>
                                 <Form.Control type="name" id="name" name="name" placeholder="Your name" required />
@@ -29,7 +29,7 @@ export default class RegisterForm extends React.Component {
                             <Button type="submit" className="btn btn-primary btn-block">Register</Button>
                         </Form>
                     <Form.Text className="text-muted text-right">
-                        Already registered? <a href="/login">Login</a>
+                        Already registered? <a href="/user/login">Login</a>
                     </Form.Text>                                        
                 </div>
             </div>

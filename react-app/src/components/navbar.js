@@ -17,9 +17,9 @@ const Navigation = (props) => {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
                     <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/login">Login</Nav.Link>
-                    <Nav.Link href="/register">Register</Nav.Link>
-                    <Form action="/logout" method="POST" id="logout-form" >
+                    <Nav.Link href="/user/login">Login</Nav.Link>
+                    <Nav.Link href="/user/register">Register</Nav.Link>
+                    <Form action="/user/logout" method="POST" id="logout-form" >
                         <Button type="submit" className="link">Logout</Button>
                     </Form>                    
                 </Nav>

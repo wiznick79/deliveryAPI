@@ -7,7 +7,7 @@ export default class LoginForm extends React.Component {
             <div className="auth-wrapper">
                 <div className="auth-inner">
                     <h3>Login</h3>
-                        <Form action="/login" method="POST">
+                        <Form action="/user/login" method="POST">
                             <Form.Group>
                                 <Form.Label className="formlabel">Email address</Form.Label>
                                 <Form.Control type="email" id="email" name="email" placeholder="Your email address" required />
@@ -22,7 +22,7 @@ export default class LoginForm extends React.Component {
                             <Button type="submit" className="btn btn-primary btn-block">Login</Button>
                         </Form>
                     <Form.Text className="text-muted text-right">
-                        No account? <a href="/register">Register</a>
+                        No account? <a href="/user/register">Register</a>
                     </Form.Text>
                 </div>
             </div>

@@ -14,8 +14,8 @@ export default class Routes extends Component {
             <Router history={history}>
                 <Switch>
                     <Route path="/" exact component={Home} />
-                    <Route path="/login" component={LoginForm} />
-                    <Route path="/register" component={RegisterForm} />
+                    <Route path="/user/login" component={LoginForm} />
+                    <Route path="/user/register" component={RegisterForm} />
                     <Route path="/user/dashboard" component={UserDashboard} />
                     <Route path="/admin/dashboard" component={AdminDashboard} />
                 </Switch>

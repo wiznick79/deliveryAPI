@@ -9,16 +9,16 @@ router.use(express.static(path.resolve(__dirname, '../react-app/build')))
 router.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../react-app/build', 'index.html'))
 });
-router.get('/login', (req, res) => {
+router.get('/user/login', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../react-app/build', 'index.html'))
 });
-router.get('/register', (req, res) => {
+router.get('/user/register', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../react-app/build', 'index.html'))
 });
-router.get('/user*', ensureAuthenticated, (req, res) => {
+router.get('/user/dashboard', ensureAuthenticated, (req, res) => {
     res.sendFile(path.resolve(__dirname, '../react-app/build', 'index.html'))
 });
-router.get('/admin*', ensureAuthenticatedAdmin, (req, res) => {
+router.get('/admin/dashboard', ensureAuthenticatedAdmin, (req, res) => {
     res.sendFile(path.resolve(__dirname, '../react-app/build', 'index.html'))
 });
 /*

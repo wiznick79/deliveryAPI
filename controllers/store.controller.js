@@ -25,10 +25,10 @@ async function getStore (req, res) {
     }
 }
 
-async function createStore(store, res) {
-    console.log(store)
+async function createStore(req, res) {
+    console.log(req.body)
     // get the data from the request's body
-    const { name, horario } = store;
+    const { name, horario } = req.body;
     // Checking if the data from the form is valid
     if (!name || !horario) {
         errors = 'Please fill in all required fields';
@@ -37,32 +37,35 @@ async function createStore(store, res) {
     }
     // Check if store already exists
     else {
-        await StoreModel.findOne({ name: name })
-            .then(store => {
-                // If store exists
-                if (store) {
-                    errors = 'There is already a store with that name';
-                    console.log(errors);
-                    res.send(errors);
-                }
-                // Create the store
-                else {
-                    const newStore = new StoreModel ({
-                        name,
-                        horario
+        try {
+            let store = await StoreModel.findOne({ name: name });
+            // If store exists
+            if (store) {
+                errors = 'There is already a store with that name';
+                console.log(errors);
+                res.send(errors);
+            }
+            // Create the store
+            else {
+                const newStore = new StoreModel ({
+                    name,
+                    horario
+                })
+                newStore.save()
+                    .then(() => {
+                        // req.flash('success_msg', 'Store created.');
+                        // res.redirect('/store/create');
+                        console.log(newStore);
+                        console.log(name + ' created');
+                        res.send(name + ' created with id: ' + newStore.id);                           
                     })
-                    newStore.save()
-                        .then(() => {
-                           // req.flash('success_msg', 'Store created.');
-                           // res.redirect('/store/create');
-                           console.log(newStore);
-                           console.log(name + ' created');
-                           res.send(name + ' created');                           
-                        })
-                        .catch(err => console.log(err));
-                }    
-            })
-            .catch(err => console.log(err));
+                    .catch(err => console.log(err));
+            }
+
+        } catch(err) {
+            console.log(err);
+            res.status(500).send(err);
+        }
     }           
 }
 

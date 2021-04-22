@@ -1,9 +1,7 @@
-const express = require('express')
-const router = express.Router()
 const bcrypt = require('bcryptjs')
-const User = require('../models/user')
+const UserModel = require('../models/user')
 
-router.post('/', (req, res) => {
+function registerUser (req, res) {
     console.log(req.body)
     // get the data from the request's body
     const { name, email, password, password2 } = req.body;
@@ -19,21 +17,22 @@ router.post('/', (req, res) => {
         errors.push('Password should be at least 6 chars')        
     }
     // Show the errors, if they exist
-    if(errors.length > 0) {
-        res.redirect('/register/?error=' + errors);
+    if (errors.length > 0) {
+        res.redirect('/user/register/?error=' + errors);
     }
     // Check if user is already registered
     else {
-        User.findOne({ email: email})
+        user = UserModel.findOne({ email: email})
             .then(user => {
                 // If email is in use
-                if (user) {
+                if (user) {                    
                     errors.push('Email is already registered');
-                    res.redirect('/register/?error=' + errors);
+                    console.log(errors);
+                    res.redirect('/user/register/?error=' + errors);
                 }
                 // if there are no users, create a user
                 else {
-                    const newUser = new User ({
+                    const newUser = new UserModel ({
                         name,
                         email, 
                         password,
@@ -47,14 +46,20 @@ router.post('/', (req, res) => {
                             newUser.save()
                                 .then(() => {
                                     req.flash('success_msg', 'Registration successful, please login.');
-                                    res.redirect('/login');
+                                    res.redirect('/user/login');
                                 })
                                 .catch(err => console.log(err));
                         })
                     })        
                 }    
             })
-    }           
-})
+    }   
+}
 
-module.exports = router
+function logoutUser (req, res) {
+    console.log('User logged out');
+    req.logout();
+    res.redirect('/user/login');
+}
+
+module.exports = { registerUser, logoutUser }

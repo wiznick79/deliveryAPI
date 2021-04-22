@@ -5,7 +5,7 @@ module.exports = {
             return next();
         }
         req.flash('error_msg', 'Please login to view this page');
-        res.redirect('/login');
+        res.redirect('/user/login');
     },
 
     ensureAuthenticatedAdmin: function(req, res, next) {
@@ -14,6 +14,6 @@ module.exports = {
             return next();
         }
         req.flash('error_msg', 'Please login to view this page');
-        res.redirect('/login');
+        res.redirect('/user/login');
     }
 }
