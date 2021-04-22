@@ -10,7 +10,7 @@ const app = express();
 const passport = require('passport');
 require('./config/passport')(passport);
 
-// const flash = require('connect-flash');
+const flash = require('connect-flash');
 const session = require('express-session');
 
 app.use(express.static('public'));
@@ -64,7 +64,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-/*
 // Connect flash
 app.use(flash());
 
@@ -75,7 +74,6 @@ app.use((req, res, next) => {
     res.locals.error = req.flash('error');
     next();
 });
-*/
 
 // Routes
 app.use('/', require('./routes/index'));
