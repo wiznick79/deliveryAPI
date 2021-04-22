@@ -21,5 +21,8 @@ router.get('/user*', ensureAuthenticated, (req, res) => {
 router.get('/admin*', ensureAuthenticatedAdmin, (req, res) => {
     res.sendFile(path.resolve(__dirname, '../react-app/build', 'index.html'))
 });
+router.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../react-app/build', 'index.html'))
+});
 
 module.exports = router;

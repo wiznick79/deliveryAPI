@@ -34,8 +34,7 @@ mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTo
 app.use(session({
     secret: 'dark secret',
     resave: true,
-    saveUninitialized: true,
-    cookie: { secure: true}
+    saveUninitialized: true    
 }));
 
 // Passport middleware
