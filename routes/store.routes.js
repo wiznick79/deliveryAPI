@@ -1,27 +1,26 @@
 const express = require('express')
 const router = express.Router()
-const Store = require('../models/store')
 const storeController = require('../controllers/store.controller')
 
 // Get all stores
 router.get('/', (req, res) => {
-    res.send('Index of stores')
+    storeController.getAllStores(req, res)
 });
 // Get a store by name
-router.get('/:name', (req, res) => {
-    res.send('Get a store')
+router.get('/:id', (req, res) => {
+    storeController.getStore(req, res)
 });
 // Create new store
 router.post('/create', (req, res) => {
     storeController.createStore(req.body, res);
 })
 // Update existing store
-router.put('/edit', (req, res) => {
-    storeController.updateStore(req.body, res);
+router.put('/update/:id', (req, res) => {
+    storeController.updateStore(req, res);
 })
 // Delete a store
-router.delete('/delete', (req, res) => {
-    storeController.deleteStore(req.body, res);
+router.delete('/delete/:id', (req, res) => {
+    storeController.deleteStore(req, res);
 })
 
 module.exports = router;

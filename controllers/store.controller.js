@@ -1,6 +1,31 @@
-const Store = require('../models/store')
+const StoreModel = require('../models/store')
 
-function createStore(store, res) {
+async function getAllStores (req, res) {
+    try {
+        const stores = await StoreModel.find({});
+        console.log(stores);
+        res.send(stores);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+}
+
+async function getStore (req, res) {
+    let id = req.params.id;
+    console.log(id);
+    try {
+        let store = await StoreModel.findById(id)        
+        console.log(store);                          
+        res.send(store)        
+        
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+}
+
+async function createStore(store, res) {
     console.log(store)
     // get the data from the request's body
     const { name, horario } = store;
@@ -12,7 +37,7 @@ function createStore(store, res) {
     }
     // Check if store already exists
     else {
-        Store.findOne({ name: name })
+        await StoreModel.findOne({ name: name })
             .then(store => {
                 // If store exists
                 if (store) {
@@ -22,7 +47,7 @@ function createStore(store, res) {
                 }
                 // Create the store
                 else {
-                    const newStore = new Store ({
+                    const newStore = new StoreModel ({
                         name,
                         horario
                     })
@@ -41,9 +66,10 @@ function createStore(store, res) {
     }           
 }
 
-function updateStore(store, res) {
-    console.log(store)
-    const { name, horario } = store;
+async function updateStore(req, res) {
+    console.log(req.body)
+    const id = req.params.id;
+    const { name, horario } = req.body;
     // Checking if the data from the form is valid
     if (!name || !horario) {
         errors = 'Please fill in all required fields';
@@ -51,25 +77,28 @@ function updateStore(store, res) {
         res.send(errors);
     }
     else {
-        Store.findOneAndUpdate({ name: name }, {$set: {horario: store.horario }}, { new: true })
-            .then(() => {
-                console.log(name + ' updated');                  
-                res.send(name + ' updated')
-            })
-            .catch(err => console.log(err));
+        try {
+            let store = await StoreModel.findOneAndUpdate({ _id: id }, {$set: {name: name, horario: horario }}, { new: true })
+            console.log(store.name + ' updated');                  
+            res.send(store);
+        } catch (err) {
+            console.log(err);
+            res.status(500).send(err);
+        } 
     } 
 }
 
-function deleteStore(store, res) {
-    console.log(store)
-    const { name } = store;
-    Store.findOneAndDelete({ name: name })
-        .then(() => {
-            console.log(name + ' deleted');                  
-            res.send(name + ' deleted')
-        })
-        .catch(err => console.log(err));
-    
+async function deleteStore(req, res) {    
+    let id = req.params.id;
+    console.log('Trying to delete store with id: ' + id)
+    try {
+        let store = await StoreModel.findByIdAndDelete(id)
+        console.log(store.name + ' deleted');                  
+        res.send(store.name + ' deleted');
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }  
 }
 
-module.exports = { createStore, updateStore, deleteStore }
+module.exports = { getAllStores, getStore, createStore, updateStore, deleteStore }
