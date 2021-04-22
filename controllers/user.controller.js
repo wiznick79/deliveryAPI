@@ -1,6 +1,11 @@
 const bcrypt = require('bcryptjs')
 const UserModel = require('../models/user')
 
+/**
+ * Register a new user
+ * @param {*} req 
+ * @param {*} res 
+ */
 function registerUser (req, res) {
     console.log(req.body)
     // get the data from the request's body
@@ -56,6 +61,11 @@ function registerUser (req, res) {
     }   
 }
 
+/**
+ * Logout the user
+ * @param {*} req 
+ * @param {*} res 
+ */
 function logoutUser (req, res) {
     console.log('User logged out');
     req.logout();

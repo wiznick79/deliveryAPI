@@ -1,5 +1,10 @@
 const StoreModel = require('../models/store')
 
+/**
+ * Get all stores
+ * @param {*} req 
+ * @param {*} res 
+ */
 async function getAllStores (req, res) {
     try {
         const stores = await StoreModel.find({});
@@ -11,6 +16,11 @@ async function getAllStores (req, res) {
     }
 }
 
+/**
+ * Get one store
+ * @param {*} req 
+ * @param {*} res 
+ */
 async function getStore (req, res) {
     let id = req.params.id;
     console.log(id);
@@ -25,6 +35,11 @@ async function getStore (req, res) {
     }
 }
 
+/**
+ * Create a new store
+ * @param {*} req 
+ * @param {*} res 
+ */
 async function createStore(req, res) {
     console.log(req.body)
     // get the data from the request's body
@@ -69,6 +84,11 @@ async function createStore(req, res) {
     }           
 }
 
+/**
+ * Update existing store
+ * @param {*} req 
+ * @param {*} res 
+ */
 async function updateStore(req, res) {
     console.log(req.body)
     const id = req.params.id;
@@ -91,6 +111,11 @@ async function updateStore(req, res) {
     } 
 }
 
+/**
+ * Delete existing store
+ * @param {*} req 
+ * @param {*} res 
+ */
 async function deleteStore(req, res) {    
     let id = req.params.id;
     console.log('Trying to delete store with id: ' + id)
