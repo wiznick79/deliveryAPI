@@ -1,21 +1,26 @@
 const express = require('express')
 const router = express.Router()
+const slotController = require('../controllers/slot.controller')
 const { ensureAuthenticated, ensureAuthenticatedAdmin } = require('../config/auth');
 
 router.get('/', (req, res) => {
-    res.send('Index of slots')
+    slotController.getAllSlots(req, res);
+});
+
+router.get('/:id', (req, res) => {
+    slotController.getSlot(req, res);
 });
 
 router.post('/create', (req, res) => {
-    res.send('Create slot')
+    slotController.createSlot(req, res);
 })
 
-router.put('/update', (req, res) => {
-    res.send('Update slot')
+router.put('/update/:id', (req, res) => {
+    slotController.updateSlot(req, res);
 })
 
-router.delete('/delete', (req, res) => {
-    res.send('Delete slot')
+router.delete('/delete/:id', (req, res) => {
+    slotController.deleteSlot(req, res);
 })
 
 module.exports = router;

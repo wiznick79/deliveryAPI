@@ -7,7 +7,7 @@ const { ensureAuthenticated, ensureAuthenticatedAdmin } = require('../config/aut
 router.get('/', ensureAuthenticated, (req, res) => {
     storeController.getAllStores(req, res)
 });
-// Get a store by name
+// Get a store by id
 router.get('/:id', ensureAuthenticated, (req, res) => {
     storeController.getStore(req, res)
 });
@@ -15,11 +15,11 @@ router.get('/:id', ensureAuthenticated, (req, res) => {
 router.post('/create', ensureAuthenticatedAdmin, (req, res) => {
     storeController.createStore(req, res);
 })
-// Update existing store
+// Update existing store by id
 router.put('/update/:id', ensureAuthenticatedAdmin, (req, res) => {
     storeController.updateStore(req, res);
 })
-// Delete a store
+// Delete a store by id
 router.delete('/delete/:id', ensureAuthenticatedAdmin, (req, res) => {
     storeController.deleteStore(req, res);
 })

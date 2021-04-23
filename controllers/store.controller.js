@@ -40,7 +40,7 @@ async function getStore (req, res) {
  * @param {*} req 
  * @param {*} res 
  */
-async function createStore(req, res) {
+async function createStore (req, res) {
     console.log(req.body)
     // get the data from the request's body
     const { name, horario } = req.body;
@@ -89,7 +89,7 @@ async function createStore(req, res) {
  * @param {*} req 
  * @param {*} res 
  */
-async function updateStore(req, res) {
+async function updateStore (req, res) {
     console.log(req.body)
     const id = req.params.id;
     const { name, horario } = req.body;
@@ -116,7 +116,7 @@ async function updateStore(req, res) {
  * @param {*} req 
  * @param {*} res 
  */
-async function deleteStore(req, res) {    
+async function deleteStore (req, res) {    
     let id = req.params.id;
     console.log('Trying to delete store with id: ' + id)
     try {

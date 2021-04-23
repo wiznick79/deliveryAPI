@@ -7,6 +7,10 @@ const Slot = mongoose.model(
         type: Date,
         required: true
     },
+    capacity: {
+      type: Number,
+      default: 5
+    },
     created_at: {
         type: Date,
         default: Date.now
