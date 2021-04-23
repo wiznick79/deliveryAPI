@@ -68,8 +68,7 @@ async function createSlot (req, res) {
                         // req.flash('success_msg', 'Slot created.');
                         // res.redirect('/slot/create');
                         console.log(newSlot);
-                        console.log('Slot created at ' + newSlot.date);
-                        res.send('Slot created at ' + newSlot.date + ' with id: ' + newSlot.id);                           
+                        res.send(newSlot);                           
                     })
                     .catch(err => console.log(err));
             }

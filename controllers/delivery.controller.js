@@ -66,20 +66,18 @@ async function createDelivery (req, res) {
                 const newDelivery = new DeliveryModel ({
                     user, store, slot
                 })
-                let deliveryUser = await UserModel.findById(user);
-                let deliveryStore = await StoreModel.findById(store);
-                let deliverySlot = await SlotModel.findById(slot);
                 newDelivery.save()
                     .then(() => {
                         // req.flash('success_msg', 'Delivery created.');
                         // res.redirect('/delivery/create');
-                        console.log(newDelivery);
-                        let msg = 'Delivery with id ' + newDelivery.id + ' created' + 
-                        '\nDate: ' + deliverySlot.date + 
-                        '\nUser: ' + deliveryUser.name + 
-                        '\nStore: ' + deliveryStore.name;
-                        console.log(msg);
-                        res.send(msg);                           
+                        DeliveryModel.find({_id : newDelivery.id})
+                            .populate('user', 'name')
+                            .populate('store', 'name')
+                            .populate('slot', 'date')
+                            .exec((err, delivery) => {
+                                console.log(delivery);
+                                res.send(delivery);
+                            });                                                       
                     })
                     .catch(err => console.log(err));
             }

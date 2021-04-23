@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const User = require('./user');
 const Slot = require('./slot');
 const Store = require('./store');
-const ObjectId = mongoose.Schema.ObjectId;
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const Delivery = mongoose.model(
   "Delivery",
@@ -25,5 +25,7 @@ const Delivery = mongoose.model(
     }
   })
 );
+
+
 
 module.exports = Delivery;

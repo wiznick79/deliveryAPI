@@ -7,7 +7,7 @@ export default class Home extends Component {
     return (
       <Container>      
         <div className="lander">
-          <img src="icon-512x512.png" alt="glazed logo" class="glazed-logo"></img>
+          <img src="icon-512x512.png" alt="glazed logo" className="glazed-logo"></img>
           <h1>glazed</h1>
         </div>
       </Container>
