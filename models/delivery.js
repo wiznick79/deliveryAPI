@@ -7,7 +7,7 @@ const ObjectId = mongoose.Schema.ObjectId;
 const Delivery = mongoose.model(
   "Delivery",
   new mongoose.Schema({
-    client: {
+    user: {
         type: ObjectId,
         ref: 'User'
     },

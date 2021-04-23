@@ -1,21 +1,26 @@
 const express = require('express')
 const router = express.Router()
+const deliveryController = require('../controllers/delivery.controller')
 const { ensureAuthenticated, ensureAuthenticatedAdmin } = require('../config/auth');
 
 router.get('/', (req, res) => {
-    res.send('Index of deliveries')
+    deliveryController.getAllDeliveries(req, res);
+});
+
+router.get('/:id', (req, res) => {
+    deliveryController.getDelivery(req, res);
 });
 
 router.post('/create', (req, res) => {
-    res.send('Create delivery')
+    deliveryController.createDelivery(req, res);
 })
 
-router.put('/update', (req, res) => {
-    res.send('Update delivery')
+router.put('/update/:id', (req, res) => {
+    deliveryController.updateDelivery(req, res);
 })
 
-router.delete('/delete', (req, res) => {
-    res.send('Delete delivery')
+router.delete('/delete/:id', (req, res) => {
+    deliveryController.deleteDelivery(req, res);
 })
 
 module.exports = router;
