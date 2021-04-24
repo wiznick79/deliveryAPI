@@ -7,7 +7,7 @@ const SlotModel = require('../models/slot')
  */
 async function getAllSlots(req, res) {
     try {
-        const slots = await SlotModel.find({});
+        const slots = await SlotModel.find({}).sort('date');
         console.log(slots);
         res.send(slots);
     } catch (err) {

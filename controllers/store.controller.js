@@ -7,7 +7,7 @@ const StoreModel = require('../models/store')
  */
 async function getAllStores (req, res) {
     try {
-        const stores = await StoreModel.find({});
+        const stores = await StoreModel.find({}).sort('name');
         console.log(stores);
         res.send(stores);
     } catch (err) {

@@ -28,7 +28,7 @@ export default class UserDashboard extends React.Component {
         const { slots, stores } = this.state;
 
         return (
-            <Container className="text-white">
+            <Container>
                 <h3>User Dashboard</h3>
                 <h4>Available slots: </h4>
                 {slots.length ? (
