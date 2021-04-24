@@ -14,14 +14,14 @@ router.get('/:id', ensureAuthenticated, (req, res) => {
 // Create new store
 router.post('/create', ensureAuthenticatedAdmin, (req, res) => {
     storeController.createStore(req, res);
-})
+});
 // Update existing store by id
 router.put('/update/:id', ensureAuthenticatedAdmin, (req, res) => {
     storeController.updateStore(req, res);
-})
+});
 // Delete a store by id
 router.delete('/delete/:id', ensureAuthenticatedAdmin, (req, res) => {
     storeController.deleteStore(req, res);
-})
+});
 
 module.exports = router;

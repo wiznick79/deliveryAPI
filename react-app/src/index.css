@@ -1,95 +1,97 @@
 @font-face {
-  font-family: ZonaProBold;
-  src: url(ZonaPro-Bold.otf);
+    font-family: ZonaProBold;
+    src: url(ZonaPro-Bold.otf);
 }
 
 body {
-  margin: 0;
-  background: rgb(60, 101, 206) !important;
-  min-height: 100vh;
-  display: flex;
-  padding-top: 57px;
-  font-weight: 400;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Fira Sans', 'Cantarell', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    background: rgb(60, 101, 206) !important;
+    min-height: 100vh;
+    display: flex;
+    padding-top: 57px;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Fira Sans", "Cantarell", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-h1,h2,h3,h4,h5,h6, .formlabel,span {
-  font-weight: 500;
-  font-family: 'ZonaProBold', 'Segoe UI', 'Fira Sans', sans-serif;
+h1, h2, h3, h4, h5, h6, .formlabel, span {
+    font-weight: 500;
+    font-family: "ZonaProBold", "Segoe UI", "Fira Sans", sans-serif;
 }
 
 body, html, .App, #root, .auth-wrapper {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .navbar-dark {
-  background-color: rgb(26, 69, 182);
+    background-color: rgb(26, 69, 182);
 }
 
 .auth-wrapper {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: left;  
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
 }
 
 .auth-inner {
-  width: 400px;
-  margin: auto;
-  background: #ffffff;  
-  padding: 30px 25px;
-  border-radius: 15px;
-  transition: all .3s;
+    width: 400px;
+    margin: auto;
+    background: #ffffff;
+    padding: 30px 25px;
+    border-radius: 15px;
+    transition: all 0.3s;
 }
 
 @media screen and (max-width: 480px) {
-  .auth-inner {
-    width: 100vw;
-    height: 100vh;
-    padding: 15px 15px;
-    border-radius: 0;
-  }
+    .auth-inner {
+        width: 100vw;
+        height: 100vh;
+        padding: 15px 15px;
+        border-radius: 0;
+    }
 }
 
 .auth-wrapper .form-control:focus {
-  border-color: #167bff;
-  box-shadow: none;
+    border-color: #167bff;
+    box-shadow: none;
 }
 
 .auth-wrapper h3 {
-  text-align: center;
-  margin: 0;
-  line-height: 1;
-  padding-bottom: 20px;
+    text-align: center;
+    margin: 0;
+    line-height: 1;
+    padding-bottom: 20px;
 }
 
 .custom-control-label {
-  font-weight: 400;
+    font-weight: 400;
 }
 
 button.link {
-  font: inherit;
-  color: hsla(0,0%,100%,.5);
-  background: none;
-  border: none;  
-  padding: 0.5rem 0.5rem;
-  cursor: pointer;
-  border: 0px solid transparent;
+    font: inherit;
+    color: hsla(0, 0%, 100%, 0.5);
+    background: none;
+    border: none;
+    padding: 0.5rem 0.5rem;
+    cursor: pointer;
+    border: 0px solid transparent;
 }
 button.link:hover {
-  color:hsla(0,0%,100%,.75);
-  background: none;
-  border: 0px solid transparent;
+    color: hsla(0, 0%, 100%, 0.75);
+    background: none;
+    border: 0px solid transparent;
 }
