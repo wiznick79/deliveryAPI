@@ -1,10 +1,14 @@
 // Load .env variables when in dev mode
 if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config()
+    require('dotenv').config();
 }
 // Load Express.js
 const express = require('express');
 const app = express();
+
+// Cookie Parser
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 // Passport
 const passport = require('passport');

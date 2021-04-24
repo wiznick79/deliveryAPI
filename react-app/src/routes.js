@@ -13,7 +13,7 @@ export default class Routes extends Component {
         return (
             <Router history={history}>
                 <Switch>
-                    <Route path="/" exact component={Home} />
+                    <Route exact path="/" component={Home} />
                     <Route path="/user/login" component={LoginForm} />
                     <Route path="/user/register" component={RegisterForm} />
                     <Route path="/user/dashboard" component={UserDashboard} />

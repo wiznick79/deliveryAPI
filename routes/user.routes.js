@@ -24,5 +24,9 @@ router.use('/logout', ensureAuthenticated, (req, res) => {
 router.post('/register', (req, res) => {
     userController.registerUser(req, res);
 });
-
+/*
+router.use('/user/dashboard', ensureAuthenticated, (req, res) => {
+    res.json({username: req.user.name});
+});
+*/
 module.exports = router;

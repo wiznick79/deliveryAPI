@@ -18,6 +18,7 @@ router.get('/user/register', (req, res) => {
 router.get('/user/dashboard', ensureAuthenticated, (req, res) => {
     res.sendFile(path.resolve(__dirname, '../react-app/build', 'index.html'))
 });
+
 router.get('/admin/dashboard', ensureAuthenticatedAdmin, (req, res) => {
     res.sendFile(path.resolve(__dirname, '../react-app/build', 'index.html'))
 });
