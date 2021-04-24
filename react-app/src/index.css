@@ -52,6 +52,7 @@ body, html, .App, #root, .auth-wrapper {
     width: 400px;
     margin: auto;
     background: #ffffff;
+    color: black;
     padding: 30px 25px;
     border-radius: 15px;
     transition: all 0.3s;
