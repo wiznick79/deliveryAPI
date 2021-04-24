@@ -1,15 +1,15 @@
 .home {
-    padding: 80px 30px;
-    color: white;
-    text-align: center;
-    font-family: 'ZonaProBold', sans-serif;
-  }
+  padding: 80px 30px;
+  color: white;
+  text-align: center;
+  font-family: "ZonaProBold", sans-serif;
+}
 
 @media screen and (max-width: 600px) {
   .home {
     padding: 60px 10px;
   }
-  .glazed-logo {    
+  .glazed-logo {
     height: 300px;
     width: 300px;
   }

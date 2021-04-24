@@ -1,13 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import "./home.css";
-import { Container } from 'react-bootstrap';
+import { Container } from "react-bootstrap";
 
-export default class Home extends Component {
+export default class Home extends React.Component {
   render() {
     return (
-      <Container>      
+      <Container>
         <div className="home">
-          <img src="icon-512x512.png" alt="glazed logo" className="glazed-logo"></img>
+          <img src="icon-512x512.png" alt="glazed logo" className="glazed-logo"/>
           <h1>glazed</h1>
         </div>
       </Container>
