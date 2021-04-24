@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 
 export default class LoginForm extends React.Component {
     render() {
-        return (            
+        return (
             <div className="auth-wrapper">
                 <div className="auth-inner">
                     <h3>Login</h3>

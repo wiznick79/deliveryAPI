@@ -4,7 +4,7 @@ import { Form, Button } from 'react-bootstrap';
 let error = (new URLSearchParams(window.location.search)).get("error")
 export default class RegisterForm extends React.Component {
     render() {
-        return (
+        return (            
             <div className="auth-wrapper">                
                 <div className="auth-inner">                
                     <h3>Register</h3>
@@ -32,7 +32,7 @@ export default class RegisterForm extends React.Component {
                         Already registered? <a href="/user/login">Login</a>
                     </Form.Text>                                        
                 </div>
-            </div>
+            </div>           
         );
     }
 }

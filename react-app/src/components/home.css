@@ -1,4 +1,4 @@
-.lander {
+.home {
     padding: 80px 30px;
     color: white;
     text-align: center;
@@ -6,7 +6,7 @@
   }
 
 @media screen and (max-width: 600px) {
-  .lander {
+  .home {
     padding: 60px 10px;
   }
   .glazed-logo {    

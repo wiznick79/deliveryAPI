@@ -6,7 +6,7 @@ export default class Home extends Component {
   render() {
     return (
       <Container>      
-        <div className="lander">
+        <div className="home">
           <img src="icon-512x512.png" alt="glazed logo" className="glazed-logo"></img>
           <h1>glazed</h1>
         </div>
