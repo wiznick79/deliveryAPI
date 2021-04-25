@@ -25,6 +25,7 @@ export default class NavbarUser extends React.Component {
             return (
                 <Nav className="ml-auto">                
                     <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href="/user/dashboard">Dashboard</Nav.Link>
                     <Form action="/user/logout" method="POST" id="logout-form">
                         <Button type="submit" className="link">
                             Logout
