@@ -21,25 +21,28 @@ export default class NavbarUser extends React.Component {
     render() {
         const { user } = this.state;
 
-        if (user.name) {
-            return (
-                <Nav className="ml-auto">                
-                    <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/user/dashboard">Dashboard</Nav.Link>
-                    <Form action="/user/logout" method="POST" id="logout-form">
+        return (
+            <Nav className="ml-auto">
+                <Nav.Link href="/">Home</Nav.Link>
+                {
+                    user.name &&
+                    <Nav>                        
+                        <Nav.Link href="/user/dashboard">Dashboard</Nav.Link>
+                        <Form action="/user/logout" method="POST" id="logout-form">
                         <Button type="submit" className="link">
                             Logout
-                        </Button>
-                    </Form>
-                </Nav>
-            )
-        }        
-        else return (            
-            <Nav className="ml-auto">                
-                <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/user/login">Login</Nav.Link>
-                <Nav.Link href="/user/register">Register</Nav.Link>
+                            </Button>
+                        </Form>
+                    </Nav>
+                }
+                {
+                    !user.name &&
+                    <Nav>                        
+                        <Nav.Link href="/user/login">Login</Nav.Link>
+                        <Nav.Link href="/user/register">Register</Nav.Link>
+                    </Nav>
+                }
             </Nav>
-        );
+        )
     }
 }

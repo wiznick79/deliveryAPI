@@ -1,6 +1,6 @@
 import React from "react";
-import { Container } from "react-bootstrap";
-
+import { Container, Form, Col, Row, Button, Card } from "react-bootstrap";
+import SlotPicker from "./slotpicker"
 export default class UserDashboard extends React.Component {
     constructor(props) {
         super(props);
@@ -35,29 +35,42 @@ export default class UserDashboard extends React.Component {
         const { user, slots, stores } = this.state;
 
         return (
-            <Container>
-                <h3>User Dashboard</h3> 
-                <div>Welcome, {user.name}</div>
-                <h4>Available slots: </h4>
-                {slots.length ? (
-                    <div>
-                        {slots.map((slot) => {
-                            return(<li key={slot._id}>{slot.date}</li>);
-                        })}
-                    </div>
-                ) : (
-                    <div>No available slots found</div>
-                )}
-                <h4>Available stores: </h4>
-                {stores.length ? (
-                    <div>
-                        {stores.map((store) => {
-                            return(<li key={store._id}>{store.name}</li>);
-                        })}
-                    </div>
-                ) : (
-                    <div>No available stores found</div>
-                )}
+            <Container fluid="sm">
+                <Row>
+                    <Col>
+                    <Card className="" border="dark" bg="light" text="dark">
+                        <Card.Header><span className="float-left">User Dashboard</span><span className="float-right">{user.name}</span></Card.Header>
+                        <Card.Body>
+                            <Card.Title>Please, make your choices for your delivery</Card.Title>
+                            <Form>
+                                <Form.Group>
+                                    <Col sm={12}>
+                                        <Form.Label className="formlabel">Store</Form.Label>
+                                    </Col>
+                                    <Col sm={12}>
+                                        <Form.Control as="select" defaultValue="">
+                                            <option>Choose a store...</option>
+                                            {
+                                                stores.map((store) => {
+                                                    return(<option key={store._id} value={store._id}>{store.name}</option>);
+                                                })
+                                            }
+                                        </Form.Control>
+                                    </Col>
+                                </Form.Group>                        
+                                <Form.Group as={Row}>
+                                    <Col sm={12}>                            
+                                        <SlotPicker slots={slots} />                        
+                                    </Col>
+                                </Form.Group>
+                                <Col sm={12}>
+                                    <Button type="submit" variant="dark">Submit</Button>
+                                </Col>
+                            </Form>
+                        </Card.Body>
+                    </Card>
+                    </Col>
+                </Row>   
             </Container>
         );
     }

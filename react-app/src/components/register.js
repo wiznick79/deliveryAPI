@@ -54,7 +54,7 @@ export default class RegisterForm extends React.Component {
                                 required
                             />
                         </Form.Group>
-                        <Button type="submit"className="btn btn-primary btn-block">
+                        <Button type="submit" className="btn btn-primary btn-block">
                             Register
                         </Button>
                     </Form>
