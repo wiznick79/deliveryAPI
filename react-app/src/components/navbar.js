@@ -1,7 +1,8 @@
 import React from "react";
 import "./navbar.css";
-import { Navbar, Nav, Image, Form, Button } from "react-bootstrap";
+import { Navbar, Image } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
+import NavbarUser from "./navbarUser"
 
 const Navigation = (props) => {
     return (
@@ -18,16 +19,7 @@ const Navigation = (props) => {
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="ml-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/user/login">Login</Nav.Link>
-                    <Nav.Link href="/user/register">Register</Nav.Link>
-                    <Form action="/user/logout" method="POST" id="logout-form">
-                        <Button type="submit" className="link">
-                            Logout
-                        </Button>
-                    </Form>
-                </Nav>
+                <NavbarUser />
             </Navbar.Collapse>
         </Navbar>
     );

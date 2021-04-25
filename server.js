@@ -8,7 +8,14 @@ const app = express();
 
 // Cookie Parser
 const cookieParser = require('cookie-parser');
-app.use(cookieParser());
+app.use(cookieParser('verydarksecret'));
+
+// Cors
+const cors = require('cors');
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+}));
 
 // Passport
 const passport = require('passport');
@@ -36,7 +43,7 @@ mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTo
 
 // Express session
 app.use(session({
-    secret: 'dark secret',
+    secret: 'verydarksecret',
     resave: true,
     saveUninitialized: true    
 }));
