@@ -98,22 +98,14 @@ export default class UserDashboard extends React.Component {
                             selected={this.state.startDate} 
                             onChange={this.handleChange}
                             includeDates={includedDates}
-                            dateFormat="dd/MM/yyyy"        
-                        />
-                        </div>
-                        <Form.Label className="formlabel pt-3">Time</Form.Label>
-                        <div>
-                        <DatePicker 
-                            selected={this.state.startDate} 
-                            onChange={this.handleChange}
                             timeFormat="HH:mm"
                             showTimeSelect
-                            showTimeSelectOnly
                             timeCaption="Time"
                             includeTimes={includedDates}
-                            dateFormat="HH:mm"        
+                            dateFormat="dd/MM/yyyy HH:mm"
+                            inline        
                         />
-                        </div>
+                        </div>                        
                     </Form.Group>
                     <input id="slot" name="slot" type="hidden" value={this.state.startDate}></input>
                     <Button type="submit" variant="dark">Submit</Button>
