@@ -1,7 +1,7 @@
 import React from "react";
-import "./navbar.css";
 import { Navbar, Image } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
+import "./navbar.css";
 import NavbarUser from "./navbarUser"
 
 const Navigation = (props) => {
@@ -17,8 +17,8 @@ const Navigation = (props) => {
                 />{" "}
                 glazed
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
+            <Navbar.Toggle aria-controls="top-navbar" />
+            <Navbar.Collapse id="top-navbar">
                 <NavbarUser />
             </Navbar.Collapse>
         </Navbar>

@@ -49,15 +49,18 @@ async function getDelivery(req, res) {
  */
 async function createDelivery(req, res) {
     console.log(req.body);
-    const { user, store, slot } = req.body;
+    var { user, store, slot } = req.body;
+    // Client posts date for slot, so we find the slot with that date and get its id
+    let newSlot = await SlotModel.findOne({date: slot});
+    slot = newSlot._id;
     // Checking if the data from the form is valid
     if (!user || !store || !slot) {
         let errors = "Please fill in all required fields";
         console.log(errors);
         res.send(errors);
     }
-    // Check if delivery already exists
-    else {
+    else {        
+        // Check if delivery already exists
         try {
             let delivery = await DeliveryModel.findOne({
                 user: user,
@@ -79,15 +82,14 @@ async function createDelivery(req, res) {
                 newDelivery
                     .save()
                     .then(() => {
-                        // req.flash('success_msg', 'Delivery created.');
-                        // res.redirect('/delivery/create');
                         DeliveryModel.find({ _id: newDelivery.id })
                             .populate("user", "name")
                             .populate("store", "name")
                             .populate("slot", "date")
                             .exec((err, delivery) => {
                                 console.log(delivery);
-                                res.send(delivery);
+                                // req.flash('success_msg', 'Delivery created.');
+                                res.redirect('/user/dashboard');
                             });
                     })
                     .catch((err) => console.log(err));

@@ -31,7 +31,7 @@ export default class NavbarUser extends React.Component {
                         <Form action="/user/logout" method="POST" id="logout-form">
                         <Button type="submit" className="link">
                             Logout
-                            </Button>
+                        </Button>
                         </Form>
                     </Nav>
                 }

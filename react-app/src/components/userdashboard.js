@@ -1,12 +1,27 @@
 import React from "react";
-import { Container, Form, Col, Row, Button, Card } from "react-bootstrap";
-import SlotPicker from "./slotpicker"
+import { Container, Form, Button } from "react-bootstrap";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 export default class UserDashboard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { user: [], slots: [], stores: [] }
+        this.state = { user: [], slots: [], stores: [], startDate: new Date() }
+        this.handleChange = this.handleChange.bind(this);
+        this.onFormSubmit = this.onFormSubmit.bind(this);
     }
     
+    handleChange(date) {
+        this.setState({
+          startDate: date
+        })
+    }
+
+    onFormSubmit(e) {
+        e.preventDefault();
+        console.log(this.state.startDate)
+    }
+
     componentDidMount() {
         this.getSlots();
         this.getStores();
@@ -31,46 +46,69 @@ export default class UserDashboard extends React.Component {
         .then(stores => this.setState({ stores }))
     }
     
-    render() {
+    render()  {
         const { user, slots, stores } = this.state;
+        
+        const includedDates = [];
+        slots.forEach((slot) => {
+            let slotDate = new Date(slot.date);
+            includedDates.push(slotDate);
+            console.log(slotDate);
+    
+        })    
+        console.log(includedDates);
 
         return (
-            <Container fluid="sm">
-                <Row>
-                    <Col>
-                    <Card className="" border="dark" bg="light" text="dark">
-                        <Card.Header><span className="float-left">User Dashboard</span><span className="float-right">{user.name}</span></Card.Header>
-                        <Card.Body>
-                            <Card.Title>Please, make your choices for your delivery</Card.Title>
-                            <Form>
-                                <Form.Group>
-                                    <Col sm={12}>
-                                        <Form.Label className="formlabel">Store</Form.Label>
-                                    </Col>
-                                    <Col sm={12}>
-                                        <Form.Control as="select" defaultValue="">
-                                            <option>Choose a store...</option>
-                                            {
-                                                stores.map((store) => {
-                                                    return(<option key={store._id} value={store._id}>{store.name}</option>);
-                                                })
-                                            }
-                                        </Form.Control>
-                                    </Col>
-                                </Form.Group>                        
-                                <Form.Group as={Row}>
-                                    <Col sm={12}>                            
-                                        <SlotPicker slots={slots} />                        
-                                    </Col>
-                                </Form.Group>
-                                <Col sm={12}>
-                                    <Button type="submit" variant="dark">Submit</Button>
-                                </Col>
-                            </Form>
-                        </Card.Body>
-                    </Card>
-                    </Col>
-                </Row>   
+            <Container>
+                <h4>Welcome, {user.name}</h4>
+                <p>Please, pick your choices:</p>                
+                    <Form action="/delivery/create" method="POST">
+                    <input id="user" name="user" type="hidden" value={user.id}></input>    
+                    <Form.Group>
+                        <Form.Label className="formlabel">Store</Form.Label>
+                        <Form.Control
+                            style={{width: 220}}
+                            as="select" 
+                            defaultValue=""
+                            id="store"
+                            name="store"
+                            required
+                        >
+                            <option>Choose a store...</option>
+                            {
+                                stores.map((store) => {
+                                    return(<option key={store._id} value={store._id}>{store.name}</option>);
+                                })
+                            }
+                        </Form.Control>
+                    </Form.Group>                        
+                    <Form.Group>                        
+                        <Form.Label className="formlabel">Date</Form.Label>
+                        <div
+                        ><DatePicker 
+                            selected={this.state.startDate} 
+                            onChange={this.handleChange}
+                            includeDates={includedDates}
+                            dateFormat="dd/MM/yyyy"        
+                        />
+                        </div>
+                        <Form.Label className="formlabel pt-3">Time</Form.Label>
+                        <div>
+                        <DatePicker 
+                            selected={this.state.startDate} 
+                            onChange={this.handleChange}
+                            timeFormat="HH:mm"
+                            showTimeSelect
+                            showTimeSelectOnly
+                            timeCaption="Time"
+                            includeTimes={includedDates}
+                            dateFormat="HH:mm"        
+                        />
+                        </div>
+                    </Form.Group>
+                    <input id="slot" name="slot" type="hidden" value={this.state.startDate}></input>
+                    <Button type="submit" variant="dark">Submit</Button>
+                </Form>                
             </Container>
         );
     }
