@@ -76,7 +76,7 @@ export default class UserDashboard extends React.Component {
                     <Form.Group>
                         <Form.Label className="formlabel">Store</Form.Label>
                         <Form.Control
-                            style={{width: 220}}
+                            style={{width: 325}}
                             as="select" 
                             defaultValue=""
                             id="store"
@@ -108,7 +108,9 @@ export default class UserDashboard extends React.Component {
                         </div>                        
                     </Form.Group>
                     <input id="slot" name="slot" type="hidden" value={this.state.startDate}></input>
-                    <Button type="submit" variant="dark">Submit</Button>
+                    <Row className="justify-content-center">
+                        <Button type="submit" variant="dark">Submit</Button>
+                    </Row>
                 </Form>
                 </Row>
             </Container>
