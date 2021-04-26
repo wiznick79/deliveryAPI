@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
-import AdminCreateStore from "./adminCreateStore";
-import AdminCreateSlot from "./adminCreateSlot";
+import AdminCreateStore from "./admincreatestore";
+import AdminCreateSlot from "./admincreateslot";
 import AdminDashboard from "./admindashboard";
 import Sidebar from "./sidebar.js";
 
