@@ -48,7 +48,7 @@ export default class AdminCreateSlot extends React.Component {
         console.log(excludedDates);
 
         return (
-            <Container>
+            <Container fluid>
                 <Row className="justify-content-center">
                     <div>
                         <h5>Create new delivery slot:</h5>                   
