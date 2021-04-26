@@ -26,8 +26,15 @@ export default class NavbarUser extends React.Component {
                 <Nav.Link href="/">Home</Nav.Link>
                 {
                     user.name &&
-                    <Nav>                        
-                        <Nav.Link href="/user/dashboard">Dashboard</Nav.Link>
+                    <Nav>
+                        {
+                            (user.id === "607f98174d6ad2861c09d734") && 
+                            <Nav.Link href="/admin/dashboard">Dashboard</Nav.Link>
+                        }
+                                                {
+                            !(user.id === "607f98174d6ad2861c09d734") &&  
+                            <Nav.Link href="/user/dashboard">Dashboard</Nav.Link>
+                        }                        
                         <Form action="/user/logout" method="POST" id="logout-form">
                         <Button type="submit" className="link">
                             Logout

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -59,9 +59,18 @@ export default class UserDashboard extends React.Component {
         console.log(includedDates);
 
         return (
-            <Container>
-                <h4>Welcome, {user.name}</h4>
-                <p>Please, pick your choices:</p>                
+            <Container fluid>
+                <Row className="justify-content-center">
+                    <div>
+                        <h4>Welcome, {user.name}</h4>                        
+                    </div>
+                </Row>
+                <Row className="justify-content-center">
+                    <div>
+                        <p>Please, pick your choices:</p>                   
+                    </div>
+                </Row>                
+                <Row className="justify-content-center">
                     <Form action="/delivery/create" method="POST">
                     <input id="user" name="user" type="hidden" value={user.id}></input>    
                     <Form.Group>
@@ -108,7 +117,8 @@ export default class UserDashboard extends React.Component {
                     </Form.Group>
                     <input id="slot" name="slot" type="hidden" value={this.state.startDate}></input>
                     <Button type="submit" variant="dark">Submit</Button>
-                </Form>                
+                </Form>
+                </Row>
             </Container>
         );
     }

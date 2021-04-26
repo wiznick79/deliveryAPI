@@ -1,21 +1,21 @@
 import React from "react";
 import { Nav } from "react-bootstrap";
-import { withRouter } from "react-router";
+import { withRouter } from "react-router-dom";
 import './sidebar.css'
 
-const Side = props => {
+const Sidebar = (props) => {
    
     return (
         <>
             <Nav className="col-sm-1 d-none d-md-block sidebar"
             activeKey="/home" 
             >  
-                <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/">New</Nav.Link>
-                <Nav.Link href="/">Test</Nav.Link>
+                <Nav.Link href="/admin/dashboard">Home</Nav.Link>
+                <Nav.Link href="/admin/createstore">Create Store</Nav.Link>
+                <Nav.Link href="/admin/createslot">Create Slot</Nav.Link>
             </Nav>          
         </>
         );
   };
-  const Sidebar = withRouter(Side);
-  export default Sidebar
+  
+  export default withRouter(Sidebar);

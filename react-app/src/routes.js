@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { Router, Switch, Route } from "react-router-dom";
-
 import LoginForm from "./components/login";
 import RegisterForm from "./components/register";
 import Home from "./components/home";
 import UserDashboard from "./components/userdashboard";
-import AdminDashboard from "./components/admindashboard";
+import Admin from "./components/admin";
 import history from "./history";
 
 export default class Routes extends Component {
@@ -17,7 +16,7 @@ export default class Routes extends Component {
                     <Route path="/user/login" component={LoginForm} />
                     <Route path="/user/register" component={RegisterForm} />
                     <Route path="/user/dashboard" component={UserDashboard} />
-                    <Route path="/admin/dashboard" component={AdminDashboard} />
+                    <Route path="/admin" component={Admin} />
                 </Switch>
             </Router>
         );
