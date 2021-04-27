@@ -43,4 +43,4 @@ For deliveries:
   - /delivery/:id (GET): to get the delivery by its id
   - /delivery/create (POST): to create a new delivery
   - /delivery/update/:id (PUT): to update an existing delivery
-  - /delivery/delete/:id (DELETE): to delivery a slot
+  - /delivery/delete/:id (DELETE): to delete a delivery
