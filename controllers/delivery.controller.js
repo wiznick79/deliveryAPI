@@ -88,7 +88,7 @@ async function createDelivery(req, res) {
                             .populate("slot", "date")
                             .exec((err, delivery) => {
                                 console.log(delivery);
-                                // req.flash('success_msg', 'Delivery created.');
+                                req.flash('success_msg', 'Delivery created.');
                                 res.redirect('/user/dashboard');
                             });
                     })

@@ -85,7 +85,7 @@ export default class AdminCreateSlot extends React.Component {
                         />
                         </div>                        
                     </Form.Group>
-                    <input id="date" name="date" type="hidden" value={this.state.startDate}></input>
+                    <input id="date" name="date" type="hidden" value={this.state.startDate}/>
                     <Row className="justify-content-center">
                         <Button type="submit" variant="dark">Submit</Button>
                     </Row>
