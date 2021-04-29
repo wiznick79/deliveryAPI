@@ -94,11 +94,20 @@ async function createDelivery(req, res) {
                     })
                     .catch((err) => console.log(err));
                 // Decrease slot capacity by 1
-                await SlotModel.findByIdAndUpdate(
+                let deliverySlot = await SlotModel.findByIdAndUpdate(
                     slot ,
                     { $inc: {capacity: -1} },
                     { new: true }
-                )               
+                )
+                // Decrease previous slot capacity by 1 because the person that
+                // does the delivery needs extra 30 mins to get the product from store
+                var dt = deliverySlot.date;
+                dt.setMinutes(dt.getMinutes()-30);
+                let previousSlot = await SlotModel.findOneAndUpdate(
+                    { date: dt },
+                    { $inc: {capacity: -1} },
+                    { new: true }
+                )
             }
         } catch (err) {
             console.log(err);
@@ -149,11 +158,19 @@ async function deleteDelivery(req, res) {
         let delivery = await DeliveryModel.findByIdAndDelete(id);
         let msg = "Deleted delivery with id: " + delivery.id;
         // Increase slot capacity by 1
-        await SlotModel.findByIdAndUpdate(
+        let deliverySlot = await SlotModel.findByIdAndUpdate(
             delivery.slot ,
             { $inc: {capacity: 1} },
             { new: true }
-        )    
+        )
+        // Increase previous slot capacity by 1
+        var dt = deliverySlot.date;
+        dt.setMinutes(dt.getMinutes()-30);
+        let previousSlot = await SlotModel.findOneAndUpdate(
+            { date: dt },
+            { $inc: {capacity: 1} },
+            { new: true }
+        )
         console.log(msg);
         res.send(msg);
     } catch (err) {
