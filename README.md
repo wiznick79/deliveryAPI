@@ -13,9 +13,6 @@ Technologies/libraries/frameworks used:
  
 The app is deployed on Heroku platform, for testing,etc : https://glazed-app.herokuapp.com/
 
-At this point the admin of the system must be assigned manually by changing the role
-from the default 'user' to 'admin' in the database (eg. using MongoDB Compass).
-
 The available endpoints of the API are:
 
 For users:
@@ -44,3 +41,12 @@ For deliveries:
   - /delivery/create (POST): to create a new delivery (needs user by his id, store by its id, slot by its date)
   - /delivery/update/:id (PUT): to update an existing delivery
   - /delivery/delete/:id (DELETE): to delete a delivery
+
+Notes:
+  1. At this point the admin of the system must be assigned manually by changing the role
+  from the default 'user' to 'admin' in the database (eg. using MongoDB Compass).
+  2. The database connection string must be added in your .env file as DATABASE_URL. Same for PORT.
+  3. To run locally:
+    - 'npm run dev' at the root folder to start Nodejs server, 
+    - 'npm start' in the react-app folder to build and run the React app,
+    - access the app in the url: http://localhost:3000
