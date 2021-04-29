@@ -1,25 +1,55 @@
 import React from "react";
-import { Container, Form, Button, Row, Col } from "react-bootstrap";
+import { Container, Form, Button, Row } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 
 export default class UserDashboard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { user: [], slots: [], stores: [], startDate: new Date() }
-        this.handleChange = this.handleChange.bind(this);
-        this.onFormSubmit = this.onFormSubmit.bind(this);
+        this.state = { user: [], slots: [], stores: [], selectedDate: new Date() }
+        this.handleDateChange = this.handleDateChange.bind(this);
+        this.handleStoreChange = this.handleStoreChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     
-    handleChange(date) {
+    handleDateChange(date) {
         this.setState({
-          startDate: date
+          selectedDate: date
         })
     }
 
-    onFormSubmit(e) {
+    handleStoreChange(e) {
+        this.setState({
+            store: e.target.value
+        })
+    }
+
+    handleSubmit(e) {
         e.preventDefault();
-        console.log(this.state.startDate)
+
+        const user = this.state.user.id;
+        const store = this.state.store;
+        const slot = this.state.selectedDate;
+        
+        axios.post("/delivery/create", { user, store, slot })
+            .then(res => {
+                toast(res.data.message, {
+                    type: res.data.type,
+                    position: "bottom-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     componentDidMount() {
@@ -29,34 +59,38 @@ export default class UserDashboard extends React.Component {
     }
 
     getUser = () => {
-        fetch('/user')
-        .then(res => res.json())
-        .then(user => this.setState({ user }))
+        axios.get("/user")        
+        .then(res => {
+            const user = res.data;
+            this.setState({ user });
+        });
     }
     
     getSlots = () => {
-        fetch('/slot')
-        .then(res => res.json())
-        .then(slots => this.setState({ slots }))
+        axios.get("/slot")
+        .then(res => {
+            const slots = res.data;
+            this.setState({ slots });
+        });
     }
 
     getStores = () => {
-        fetch('/store')
-        .then(res => res.json())
-        .then(stores => this.setState({ stores }))
+        axios.get("/store")
+        .then(res => {
+            const stores = res.data;    
+            this.setState({ stores });
+        });
     }
     
     render()  {
         const { user, slots, stores } = this.state;
         
         const includedDates = [];
-        slots.forEach((slot) => {
+        slots.map((slot) => {
             let slotDate = new Date(slot.date);
             includedDates.push(slotDate);
-            console.log(slotDate);
-    
+            return includedDates;
         })    
-        console.log(includedDates);
 
         return (
             <Container fluid>
@@ -71,8 +105,7 @@ export default class UserDashboard extends React.Component {
                     </div>
                 </Row>                
                 <Row className="justify-content-center">
-                    <Form action="/delivery/create" method="POST">
-                    <input id="user" name="user" type="hidden" value={user.id}></input>    
+                    <Form onSubmit={this.handleSubmit}>   
                     <Form.Group>
                         <Form.Label className="formlabel">Store</Form.Label>
                         <Form.Control
@@ -81,6 +114,7 @@ export default class UserDashboard extends React.Component {
                             defaultValue=""
                             id="store"
                             name="store"
+                            onChange={this.handleStoreChange}
                             required
                         >
                             <option>Choose a store...</option>
@@ -95,8 +129,8 @@ export default class UserDashboard extends React.Component {
                         <Form.Label className="formlabel">Date</Form.Label>
                         <div
                         ><DatePicker 
-                            selected={this.state.startDate} 
-                            onChange={this.handleChange}
+                            selected={this.state.selectedDate} 
+                            onChange={this.handleDateChange}
                             includeDates={includedDates}
                             timeFormat="HH:mm"
                             showTimeSelect
@@ -106,12 +140,12 @@ export default class UserDashboard extends React.Component {
                             inline        
                         />
                         </div>                        
-                    </Form.Group>
-                    <input id="slot" name="slot" type="hidden" value={this.state.startDate}></input>
+                    </Form.Group>                    
                     <Row className="justify-content-center">
                         <Button type="submit" variant="dark">Submit</Button>
                     </Row>
                 </Form>
+                <ToastContainer transition={Slide}/>
                 </Row>
             </Container>
         );

@@ -41,6 +41,6 @@ For slots:
 For deliveries:
   - /delivery (GET): to get all created deliveries
   - /delivery/:id (GET): to get the delivery by its id
-  - /delivery/create (POST): to create a new delivery
+  - /delivery/create (POST): to create a new delivery (needs user by his id, store by its id, slot by its date)
   - /delivery/update/:id (PUT): to update an existing delivery
   - /delivery/delete/:id (DELETE): to delete a delivery

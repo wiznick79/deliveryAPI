@@ -52,12 +52,13 @@ async function createDelivery(req, res) {
     var { user, store, slot } = req.body;
     // Client posts date for slot, so we find the slot with that date and get its id
     let newSlot = await SlotModel.findOne({date: slot});
+    let slotDate = newSlot.date;
     slot = newSlot._id;
     // Checking if the data from the form is valid
     if (!user || !store || !slot) {
         let errors = "Please fill in all required fields";
         console.log(errors);
-        res.send(errors);
+        res.json({type: "error", message: errors});
     }
     else {        
         // Check if delivery already exists
@@ -70,7 +71,7 @@ async function createDelivery(req, res) {
             if (delivery) {
                 let errors = "There is already a delivery for the user at that date&time";
                 console.log(errors);
-                res.send(errors);
+                res.json({type: "error", message: errors});
             }
             // Create the delivery
             else {
@@ -87,9 +88,8 @@ async function createDelivery(req, res) {
                             .populate("store", "name")
                             .populate("slot", "date")
                             .exec((err, delivery) => {
-                                console.log(delivery);
-                                req.flash('success_msg', 'Delivery created.');
-                                res.redirect('/user/dashboard');
+                                console.log(delivery);                                
+                                res.json({type: "success", message: `Delivery created successfully on ${slotDate.toLocaleString('pt-PT')}`});
                             });
                     })
                     .catch((err) => console.log(err));
