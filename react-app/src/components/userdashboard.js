@@ -90,57 +90,68 @@ export default class UserDashboard extends React.Component {
             let slotDate = new Date(slot.date);
             includedDates.push(slotDate);
             return includedDates;
-        })    
+        });
+
+        const includedTimes = [];
+        const selDate = this.state.selectedDate;
+        includedDates.forEach((date) => {
+            if (selDate.getDate() === date.getDate() &&
+                selDate.getMonth() === date.getMonth() &&
+                selDate.getFullYear() === date.getFullYear()) {
+                    let slotTime = new Date(date);
+                    includedTimes.push(slotTime);
+                }
+        });
 
         return (
             <Container fluid>
                 <Row className="justify-content-center">
                     <div>
-                        <h4>Welcome, {user.name}</h4>                        
+                        <h4>Welcome, {user.name}</h4>
                     </div>
                 </Row>
                 <Row className="justify-content-center">
                     <div>
-                        <p>Please, pick your choices:</p>                   
+                        <p>Please, pick your choices:</p>
                     </div>
-                </Row>                
+                </Row>
                 <Row className="justify-content-center">
-                    <Form onSubmit={this.handleSubmit}>   
+                    <Form onSubmit={this.handleSubmit}>
                     <Form.Group>
                         <Form.Label className="formlabel">Store</Form.Label>
                         <Form.Control
                             style={{width: 325}}
-                            as="select" 
+                            as="select"
                             defaultValue=""
                             id="store"
                             name="store"
                             onChange={this.handleStoreChange}
                             required
                         >
-                            <option>Choose a store...</option>
+                            <option value="">Choose a store...</option>
                             {
                                 stores.map((store) => {
                                     return(<option key={store._id} value={store._id}>{store.name}</option>);
                                 })
                             }
                         </Form.Control>
-                    </Form.Group>                        
-                    <Form.Group>                        
+                    </Form.Group>
+                    <Form.Group>
                         <Form.Label className="formlabel">Date</Form.Label>
-                        <div
-                        ><DatePicker 
-                            selected={this.state.selectedDate} 
+                        <div>
+                        <DatePicker 
+                            selected={this.state.selectedDate}
                             onChange={this.handleDateChange}
                             includeDates={includedDates}
                             timeFormat="HH:mm"
                             showTimeSelect
                             timeCaption="Time"
-                            includeTimes={includedDates}
+                            includeTimes={includedTimes}
                             dateFormat="dd/MM/yyyy HH:mm"
-                            inline        
+                            inline
                         />
-                        </div>                        
-                    </Form.Group>                    
+                        </div>
+                    </Form.Group>
                     <Row className="justify-content-center">
                         <Button type="submit" variant="dark">Submit</Button>
                     </Row>
