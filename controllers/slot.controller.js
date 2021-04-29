@@ -46,7 +46,7 @@ async function createSlot (req, res) {
     if (!date) {
         errors = 'Please fill in all required fields';
         console.log(errors);
-        res.send(errors);
+        res.json({type: "error", message: errors});
     }
     // Check if slot already exists
     else {
@@ -56,7 +56,7 @@ async function createSlot (req, res) {
             if (slot) {
                 errors = 'There is already a slot at that date&time';
                 console.log(errors);
-                res.send(errors);
+                res.json({type: "error", message: errors});
             }
             // Create the slot
             else {
@@ -65,10 +65,8 @@ async function createSlot (req, res) {
                 })
                 newSlot.save()
                     .then(() => {
-                        // req.flash('success_msg', 'Slot created.');
-                        // res.redirect('/slot/create');
                         console.log(newSlot);
-                        res.send(newSlot);                           
+                        res.json({type: "success", message: "Slot created successfully."});                           
                     })
                     .catch(err => console.log(err));
             }
@@ -92,13 +90,13 @@ async function updateSlot (req, res) {
     if (!date) {
         errors = 'Please fill in all required fields';
         console.log(errors);
-        res.send(errors);
+        res.json({type: "error", message: errors});
     }
     else {
         try {
             let slot = await SlotModel.findOneAndUpdate({ _id: id }, {$set: {date: date, capacity: capacity }}, { new: true })
             console.log('Updated slot at ' + slot.date);
-            res.send(slot);
+            res.json({type: "success", message: "Slot updated successfully"});
         } catch (err) {
             console.log(err);
             res.status(500).send(err);
@@ -117,7 +115,7 @@ async function deleteSlot (req, res) {
     try {
         let slot = await SlotModel.findByIdAndDelete(id);
         console.log('Deleted slot at date: ' + slot.date);
-        res.send('Deleted slot at date: ' + slot.date);
+        res.json({type: "success", message: "Slot deleted successfully"});
     } catch (err) {
         console.log(err);
         res.status(500).send(err);

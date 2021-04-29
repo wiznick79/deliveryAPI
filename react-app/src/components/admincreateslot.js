@@ -2,21 +2,30 @@ import React from "react";
 import { Container, Form, Button, Row } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "react-datepicker/dist/react-datepicker.css";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 
 export default class AdminCreateSlot extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { slots: [], startDate: new Date() }
+        this.state = { slots: [], selectedDate: new Date() }
+        this.handleDateChange = this.handleDateChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.onFormSubmit = this.onFormSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     
-    handleChange(date) {
+    handleDateChange(date) {
         this.setState({
-          startDate: date
+          selectedDate: date
+        })
+    }
+
+    handleChange(e) {
+        this.setState({
+            capacity: e.target.value
         })
     }
 
@@ -25,14 +34,35 @@ export default class AdminCreateSlot extends React.Component {
     }
 
     getSlots = () => {
-        fetch('/slot')
-        .then(res => res.json())
-        .then(slots => this.setState({ slots }))
+        axios.get("/slot")
+        .then(res => {
+            const slots = res.data;
+            this.setState({ slots });
+        });
     }
 
-    onFormSubmit(e) {
+    handleSubmit(e) {
         e.preventDefault();
-        console.log(this.state.startDate)
+
+        const date = this.state.selectedDate;
+        const capacity = this.state.capacity;
+        
+        axios.post("/slot/create", { date, capacity })
+            .then(res => {
+                toast(res.data.message, {
+                    type: res.data.type,
+                    position: "bottom-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     render() {
@@ -41,12 +71,9 @@ export default class AdminCreateSlot extends React.Component {
         const excludedDates = [];
         slots.forEach((slot) => {
             let slotDate = new Date(slot.date);
-            excludedDates.push(slotDate);
-            console.log(slotDate);
-    
+            excludedDates.push(slotDate);                
         })    
-        console.log(excludedDates);
-
+        
         return (
             <Container fluid>
                 <Row className="justify-content-center">
@@ -55,7 +82,7 @@ export default class AdminCreateSlot extends React.Component {
                     </div>
                 </Row>  
                 <Row className="justify-content-center">
-                    <Form action="/slot/create" method="POST">   
+                    <Form onSubmit={this.handleSubmit}>
                     <Form.Group>
                         <Form.Label className="formlabel">Capacity</Form.Label>
                         <Form.Control
@@ -64,6 +91,7 @@ export default class AdminCreateSlot extends React.Component {
                             defaultValue="5"
                             id="capacity"
                             name="capacity"
+                            onChange={this.handleChange}
                             required
                         >
                         </Form.Control>
@@ -72,8 +100,8 @@ export default class AdminCreateSlot extends React.Component {
                         <Form.Label className="formlabel">Date</Form.Label>
                         <div
                         ><DatePicker 
-                            selected={this.state.startDate} 
-                            onChange={this.handleChange}
+                            selected={this.state.selectedDate} 
+                            onChange={this.handleDateChange}
                             minDate={new Date()}
                             timeFormat="HH:mm"
                             showTimeSelect
@@ -85,11 +113,11 @@ export default class AdminCreateSlot extends React.Component {
                         />
                         </div>                        
                     </Form.Group>
-                    <input id="date" name="date" type="hidden" value={this.state.startDate}/>
                     <Row className="justify-content-center">
                         <Button type="submit" variant="dark">Submit</Button>
                     </Row>
                 </Form>
+                <ToastContainer transition={Slide}/>
                 </Row>
             </Container>
         );
