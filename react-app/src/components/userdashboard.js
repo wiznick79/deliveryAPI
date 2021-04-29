@@ -18,13 +18,14 @@ export default class UserDashboard extends React.Component {
     handleDateChange(date) {
         this.setState({
           selectedDate: date
-        })
+        });
+        this.getSlots();
     }
 
     handleStoreChange(e) {
         this.setState({
             store: e.target.value
-        })
+        });
     }
 
     handleSubmit(e) {
@@ -49,7 +50,8 @@ export default class UserDashboard extends React.Component {
             })
             .catch(error => {
                 console.log(error);
-            });
+            });            
+        this.getSlots();
     }
 
     componentDidMount() {

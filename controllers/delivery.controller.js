@@ -54,6 +54,7 @@ async function createDelivery(req, res) {
     let newSlot = await SlotModel.findOne({date: slot});
     let slotDate = newSlot.date;
     slot = newSlot._id;
+    console.log(slot);
     // Checking if the data from the form is valid
     if (!user || !store || !slot) {
         let errors = "Please fill in all required fields";
@@ -73,7 +74,7 @@ async function createDelivery(req, res) {
                 console.log(errors);
                 res.json({type: "error", message: errors});
             }
-            // Create the delivery
+            // If it doesn't exist, create the delivery
             else {
                 const newDelivery = new DeliveryModel({
                     user,
@@ -87,12 +88,17 @@ async function createDelivery(req, res) {
                             .populate("user", "name")
                             .populate("store", "name")
                             .populate("slot", "date")
-                            .exec((err, delivery) => {
-                                console.log(delivery);                                
+                            .exec((err, delivery) => {                                
                                 res.json({type: "success", message: `Delivery created successfully on ${slotDate.toLocaleString('pt-PT')}`});
-                            });
+                            });                        
                     })
                     .catch((err) => console.log(err));
+                // Decrease slot capacity by 1
+                await SlotModel.findByIdAndUpdate(
+                    slot ,
+                    { $inc: {capacity: -1} },
+                    { new: true }
+                )               
             }
         } catch (err) {
             console.log(err);
@@ -142,6 +148,12 @@ async function deleteDelivery(req, res) {
     try {
         let delivery = await DeliveryModel.findByIdAndDelete(id);
         let msg = "Deleted delivery with id: " + delivery.id;
+        // Increase slot capacity by 1
+        await SlotModel.findByIdAndUpdate(
+            delivery.slot ,
+            { $inc: {capacity: 1} },
+            { new: true }
+        )    
         console.log(msg);
         res.send(msg);
     } catch (err) {
