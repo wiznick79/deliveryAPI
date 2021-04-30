@@ -26,7 +26,9 @@ router.post('/register', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-    res.send({id: req.user.id, name: req.user.name, email: req.user.email});
+    if (req.user)
+        res.status(200).send({id: req.user.id, name: req.user.name, email: req.user.email, role: req.user.role});
+    else res.status(401).send("There is no user currently logged in")
 })
 /*
 router.use('/user/dashboard', ensureAuthenticated, (req, res) => {

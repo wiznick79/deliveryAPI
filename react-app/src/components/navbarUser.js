@@ -1,6 +1,7 @@
 import React from "react";
 import "./navbar.css";
 import { Nav, Form, Button } from "react-bootstrap";
+import axios from "axios";
 
 export default class NavbarUser extends React.Component {
     constructor(props) {
@@ -13,9 +14,11 @@ export default class NavbarUser extends React.Component {
     }
 
     getUser = () => {
-        fetch('/user')
-        .then(res => res.json())
-        .then(user => this.setState({ user }))
+        axios.get("/user")        
+        .then(res => {
+            const user = res.data;
+            this.setState({ user });
+        });
     }
     
     render() {
@@ -28,11 +31,11 @@ export default class NavbarUser extends React.Component {
                     user.name &&
                     <Nav>
                         {
-                            (user.id === "607f98174d6ad2861c09d734") && 
+                            (user.role === "admin") && 
                             <Nav.Link href="/admin/dashboard">Dashboard</Nav.Link>
                         }
-                                                {
-                            !(user.id === "607f98174d6ad2861c09d734") &&  
+                        {
+                            (user.role === "user") &&  
                             <Nav.Link href="/user/dashboard">Dashboard</Nav.Link>
                         }                        
                         <Form action="/user/logout" method="POST" id="logout-form">

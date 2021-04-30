@@ -41,11 +41,6 @@ export default class UserDashboard extends React.Component {
                     type: res.data.type,
                     position: "bottom-center",
                     autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
                 });
             })
             .catch(error => {
@@ -158,7 +153,15 @@ export default class UserDashboard extends React.Component {
                         <Button type="submit" variant="dark">Submit</Button>
                     </Row>
                 </Form>
-                <ToastContainer transition={Slide}/>
+                <ToastContainer 
+                    transition={Slide}
+                    pauseOnFocusLoss={false}
+                    hideProgressBar={false}
+                    closeOnClick={true}
+                    pauseOnHover={true}
+                    draggable={true}
+                    progress={undefined}
+                />
                 </Row>
             </Container>
         );
