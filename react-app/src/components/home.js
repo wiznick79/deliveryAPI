@@ -8,7 +8,7 @@ export default class Home extends React.Component {
             <Container>
                 <div className="home">
                     <img
-                        src="icon-512x512.png"
+                        src="../icon-512x512.png"
                         alt="glazed logo"
                         className="glazed-logo"
                     />

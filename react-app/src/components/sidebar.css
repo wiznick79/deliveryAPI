@@ -29,10 +29,10 @@
     width: 100%;
 }
 
-.link {
-    color: hsla(0, 0%, 100%, 0.5)!important;
+.sidelink {
+    color: hsla(0, 0%, 100%, 0.5);
 }
 
-.link:hover {
-    color: hsla(0, 0%, 100%, 0.75)!important;
+.sidelink:hover {
+    color: hsla(0, 0%, 100%, 0.75);
 }

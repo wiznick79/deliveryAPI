@@ -17,6 +17,7 @@ export default class Routes extends Component {
                     <Route path="/user/register" component={RegisterForm} />
                     <Route path="/user/dashboard" component={UserDashboard} />
                     <Route path="/admin" component={Admin} />
+                    <Route path="*" component={Home} />
                 </Switch>
             </Router>
         );
