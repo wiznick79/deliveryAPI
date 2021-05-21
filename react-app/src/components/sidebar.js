@@ -9,7 +9,7 @@ const Sidebar = (props) => {
         <>
             <Nav className="col-sm-1 d-none d-md-block sidebar" activeKey="/home">               
                 <Nav.Item>
-                    <Nav.Link href="/admin/dashboard" className="sidelink mt-5">Dashboard</Nav.Link>
+                    <Nav.Link href="/admin/dashboard" className="sidelink mt-4">Dashboard</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                     <Nav.Link href="/admin/createstore" className="sidelink">Create Store</Nav.Link>
