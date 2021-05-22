@@ -1,5 +1,5 @@
 # glazed
-Glazed Web App + API
+API in Nodejs/Expressjs and web app in Reactjs
 
 This web-based app provides the customer with a front-end to create a delivery, for products or any other services.
 Customer must create an account, then login and choose the store and the date/time for the delivery.
