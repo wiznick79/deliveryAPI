@@ -4,10 +4,10 @@ import { withRouter } from "react-router-dom";
 import './sidebar.css'
 
 const Sidebar = (props) => {
-   
+
     return (
         <>
-            <Nav className="col-sm-1 d-none d-md-block sidebar" activeKey="/home">               
+            <Nav className="col-sm-1 d-none d-md-block sidebar" activeKey="/home">
                 <Nav.Item>
                     <Nav.Link href="/admin/dashboard" className="sidelink mt-4">Dashboard</Nav.Link>
                 </Nav.Item>
@@ -17,9 +17,9 @@ const Sidebar = (props) => {
                 <Nav.Item>
                     <Nav.Link href="/admin/createslot" className="sidelink">Create Slot</Nav.Link>
                 </Nav.Item>
-            </Nav>          
+            </Nav>
         </>
         );
   };
-  
+
   export default withRouter(Sidebar);

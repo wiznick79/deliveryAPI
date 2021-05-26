@@ -14,7 +14,7 @@ export default class UserDashboard extends React.Component {
         this.handleStoreChange = this.handleStoreChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    
+
     handleDateChange(date) {
         this.setState({
           selectedDate: date
@@ -34,7 +34,7 @@ export default class UserDashboard extends React.Component {
         const user = this.state.user.id;
         const store = this.state.store;
         const slot = this.state.selectedDate;
-        
+
         axios.post("/delivery/create", { user, store, slot })
             .then(res => {
                 toast(res.data.message, {
@@ -45,7 +45,7 @@ export default class UserDashboard extends React.Component {
             })
             .catch(error => {
                 console.log(error);
-            });            
+            });
         this.getSlots();
     }
 
@@ -56,13 +56,13 @@ export default class UserDashboard extends React.Component {
     }
 
     getUser = () => {
-        axios.get("/user")        
+        axios.get("/user")
         .then(res => {
             const user = res.data;
             this.setState({ user });
         });
     }
-    
+
     getSlots = () => {
         axios.get("/slot")
         .then(res => {
@@ -74,14 +74,14 @@ export default class UserDashboard extends React.Component {
     getStores = () => {
         axios.get("/store")
         .then(res => {
-            const stores = res.data;    
+            const stores = res.data;
             this.setState({ stores });
         });
     }
-    
+
     render()  {
         const { user, slots, stores } = this.state;
-        
+
         const includedDates = [];
         slots.map((slot) => {
             let slotDate = new Date(slot.date);
@@ -136,7 +136,7 @@ export default class UserDashboard extends React.Component {
                     <Form.Group>
                         <Form.Label className="formlabel">Date</Form.Label>
                         <div>
-                        <DatePicker 
+                        <DatePicker
                             selected={this.state.selectedDate}
                             onChange={this.handleDateChange}
                             includeDates={includedDates}
@@ -153,7 +153,7 @@ export default class UserDashboard extends React.Component {
                         <Button type="submit" variant="dark">Submit</Button>
                     </Row>
                 </Form>
-                <ToastContainer 
+                <ToastContainer
                     transition={Slide}
                     pauseOnFocusLoss={false}
                     hideProgressBar={false}

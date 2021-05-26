@@ -3,8 +3,8 @@ const UserModel = require('../models/user')
 
 /**
  * Register a new user
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 function registerUser (req, res) {
     console.log(req.body)
@@ -19,7 +19,7 @@ function registerUser (req, res) {
         errors.push('Passwords do not match')
     }
     if (password.length < 6) {
-        errors.push('Password should be at least 6 chars')        
+        errors.push('Password should be at least 6 chars')
     }
     // Show the errors, if they exist
     if (errors.length > 0) {
@@ -30,7 +30,7 @@ function registerUser (req, res) {
         user = UserModel.findOne({ email: email})
             .then(user => {
                 // If email is in use
-                if (user) {                    
+                if (user) {
                     errors.push('Email is already registered');
                     console.log(errors);
                     res.redirect('/user/register/?error=' + errors);
@@ -39,7 +39,7 @@ function registerUser (req, res) {
                 else {
                     const newUser = new UserModel ({
                         name,
-                        email, 
+                        email,
                         password,
                     })
                     // Hash the password and save the user in db
@@ -55,16 +55,16 @@ function registerUser (req, res) {
                                 })
                                 .catch(err => console.log(err));
                         })
-                    })        
-                }    
+                    })
+                }
             })
-    }   
+    }
 }
 
 /**
  * Logout the user
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 function logoutUser (req, res) {
     console.log('User logged out');

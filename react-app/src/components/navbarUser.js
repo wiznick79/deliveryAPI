@@ -8,19 +8,19 @@ export default class NavbarUser extends React.Component {
         super(props);
         this.state = { user: [] }
     }
-    
+
     componentDidMount() {
         this.getUser();
     }
 
     getUser = () => {
-        axios.get("/user")        
+        axios.get("/user")
         .then(res => {
             const user = res.data;
             this.setState({ user });
         });
     }
-    
+
     render() {
         const { user } = this.state;
 
@@ -31,13 +31,13 @@ export default class NavbarUser extends React.Component {
                     user.name &&
                     <Nav>
                         {
-                            (user.role === "admin") && 
+                            (user.role === "admin") &&
                             <Nav.Link href="/admin/dashboard">Dashboard</Nav.Link>
                         }
                         {
-                            (user.role === "user") &&  
+                            (user.role === "user") &&
                             <Nav.Link href="/user/dashboard">Dashboard</Nav.Link>
-                        }                        
+                        }
                         <Form action="/user/logout" method="POST" id="logout-form">
                         <Button type="submit" className="link">
                             Logout
@@ -47,7 +47,7 @@ export default class NavbarUser extends React.Component {
                 }
                 {
                     !user.name &&
-                    <Nav>                        
+                    <Nav>
                         <Nav.Link href="/user/login">Login</Nav.Link>
                         <Nav.Link href="/user/register">Register</Nav.Link>
                     </Nav>

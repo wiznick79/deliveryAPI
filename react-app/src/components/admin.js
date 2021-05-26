@@ -20,7 +20,7 @@ export default class Admin extends Component {
                     <Route path="/admin/createstore" component={AdminCreateStore} />
                 </Col>
             </Row>
-            </div>   
+            </div>
         );
     }
 }

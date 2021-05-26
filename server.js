@@ -31,26 +31,26 @@ app.use(express.urlencoded({ extended: true }));
 // Parse JSON bodies
 app.use(express.json());
 
-// Manage database connection using Mongoose 
+// Manage database connection using Mongoose
 const db = require('./config/db.js')
 const mongoose = require('mongoose');
-mongoose.connect(process.env.DATABASE_URL, 
-    {   useNewUrlParser: true, 
-        useUnifiedTopology: true, 
-        useCreateIndex: true, 
-        useFindAndModify: false 
+mongoose.connect(process.env.DATABASE_URL,
+    {   useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false
     })
     .then(() => {
         console.log('Connected to Mongoose');
         db.dbinit();
-    })    
-    .catch(error => console.error(error))    
+    })
+    .catch(error => console.error(error))
 
 // Express session
 app.use(session({
     secret: 'verydarksecret',
     resave: true,
-    saveUninitialized: true    
+    saveUninitialized: true
 }));
 
 // Passport middleware

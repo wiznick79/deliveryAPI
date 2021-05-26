@@ -1,10 +1,10 @@
 /**
  * Ensures that there is an authenticated user.
  * Used to protect routes.
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
- * @returns 
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ * @returns
  */
 function ensureAuthenticated(req, res, next) {
     console.log(req.isAuthenticated());
@@ -18,10 +18,10 @@ function ensureAuthenticated(req, res, next) {
 /**
  * Ensures that there is an authenticated user with admin role.
  * Used to protect routes.
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
- * @returns 
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ * @returns
  */
 function ensureAuthenticatedAdmin(req, res, next) {
     console.log(req.isAuthenticated() && req.user.role === "admin");

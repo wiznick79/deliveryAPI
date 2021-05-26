@@ -5,7 +5,7 @@ const { ensureAuthenticated, ensureAuthenticatedAdmin } = require('../config/aut
 
 router.use(express.static(path.resolve(__dirname, '../react-app/build')))
 
-// Redirect to the React app 
+// Redirect to the React app
 router.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../react-app/build', 'index.html'))
 });

@@ -5,7 +5,7 @@ import './home.css'
 
 export default class UserDashboard extends React.Component {
     render()  {
-        return (            
+        return (
             <Container>
                 <Row>
                     <Col id="page-content-wrapper">
@@ -18,8 +18,8 @@ export default class UserDashboard extends React.Component {
                             <h1>glazed</h1>
                         </div>
                     </Col>
-                </Row>   
-            </Container>            
+                </Row>
+            </Container>
         );
     }
 }

@@ -6,7 +6,7 @@ const { ensureAuthenticated, ensureAuthenticatedAdmin } = require('../config/aut
 
 
 // Login
-router.post('/login', passport.authenticate('local', {        
+router.post('/login', passport.authenticate('local', {
     failureRedirect: '/user/login',
     failureFlash: true
     }), (req, res) => {

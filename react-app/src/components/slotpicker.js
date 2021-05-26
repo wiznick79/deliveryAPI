@@ -8,34 +8,34 @@ const SlotPicker = (props) => {
     const slots = props.slots;
     const today = new Date();
     const [startDate, setStartDate ] = useState(setHours(setMinutes(today, today.getMinutes()), today.getHours()));
-    
+
     const includedDates = [];
     slots.forEach((slot) => {
         let slotDate = new Date(slot.date);
         includedDates.push(slotDate);
         console.log(slotDate);
 
-    })    
+    })
     console.log(includedDates);
      return (
         <div>
             <div className="formlabel">Date</div>
-            <DatePicker 
-                selected={startDate} 
+            <DatePicker
+                selected={startDate}
                 onChange={date => setStartDate(date)}
                 includeDates={includedDates}
-                dateFormat="dd/MM/yyyy"        
+                dateFormat="dd/MM/yyyy"
             />
             <div className="formlabel">Time</div>
-            <DatePicker 
-                selected={startDate} 
+            <DatePicker
+                selected={startDate}
                 onChange={date => setStartDate(date)}
                 timeFormat="HH:mm"
                 showTimeSelect
                 showTimeSelectOnly
                 timeCaption="Time"
                 includeTimes={includedDates}
-                dateFormat="HH:mm"        
+                dateFormat="HH:mm"
             />
         </div>
     );

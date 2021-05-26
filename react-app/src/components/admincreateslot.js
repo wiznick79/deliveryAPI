@@ -16,7 +16,7 @@ export default class AdminCreateSlot extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    
+
     handleDateChange(date) {
         this.setState({
           selectedDate: date
@@ -46,7 +46,7 @@ export default class AdminCreateSlot extends React.Component {
 
         const date = this.state.selectedDate;
         const capacity = this.state.capacity;
-        
+
         axios.post("/slot/create", { date, capacity })
             .then(res => {
                 toast(res.data.message, {
@@ -71,23 +71,23 @@ export default class AdminCreateSlot extends React.Component {
         const excludedDates = [];
         slots.forEach((slot) => {
             let slotDate = new Date(slot.date);
-            excludedDates.push(slotDate);                
-        })    
-        
+            excludedDates.push(slotDate);
+        })
+
         return (
             <Container fluid>
                 <Row className="justify-content-center">
                     <div>
-                        <h5>Create new delivery slot:</h5>                   
+                        <h5>Create new delivery slot:</h5>
                     </div>
-                </Row>  
+                </Row>
                 <Row className="justify-content-center">
                     <Form onSubmit={this.handleSubmit}>
                     <Form.Group>
                         <Form.Label className="formlabel">Capacity</Form.Label>
                         <Form.Control
                             style={{width: 325}}
-                            type="text" 
+                            type="text"
                             defaultValue="5"
                             id="capacity"
                             name="capacity"
@@ -95,23 +95,23 @@ export default class AdminCreateSlot extends React.Component {
                             required
                         >
                         </Form.Control>
-                    </Form.Group>                        
-                    <Form.Group>                        
+                    </Form.Group>
+                    <Form.Group>
                         <Form.Label className="formlabel">Date</Form.Label>
                         <div
-                        ><DatePicker 
-                            selected={this.state.selectedDate} 
+                        ><DatePicker
+                            selected={this.state.selectedDate}
                             onChange={this.handleDateChange}
                             minDate={new Date()}
                             timeFormat="HH:mm"
                             showTimeSelect
                             minTime={setHours(setMinutes(new Date(), 30), 8)}
-                            maxTime={setHours(setMinutes(new Date(), 0), 22)}  
-                            timeCaption="Time"                            
+                            maxTime={setHours(setMinutes(new Date(), 0), 22)}
+                            timeCaption="Time"
                             dateFormat="dd/MM/yyyy HH:mm"
-                            inline        
+                            inline
                         />
-                        </div>                        
+                        </div>
                     </Form.Group>
                     <Row className="justify-content-center">
                         <Button type="submit" variant="dark">Submit</Button>
