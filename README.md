@@ -1,5 +1,5 @@
 # glazed
-Glazed Web App + API
+API in Nodejs/Expressjs and web app in Reactjs
 
 This web-based app provides the customer with a front-end to create a delivery, for products or any other services.
 Customer must create an account, then login and choose the store and the date/time for the delivery.
@@ -11,7 +11,7 @@ Technologies/libraries/frameworks used:
  - Front-end: Reactjs, React-bootstrap
  - Back-end: Nodejs, Expressjs, Passportjs, MongoDB, Mongoose 
  
-The app is deployed on Heroku platform, for testing,etc : https://glazed-app.herokuapp.com/
+The app is deployed on Heroku platform, for testing,etc : https://delivery-nodejs-api.herokuapp.com/
 
 The available endpoints of the API are:
 
