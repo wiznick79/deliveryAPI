@@ -11,11 +11,11 @@ export default class UserDashboard extends React.Component {
                     <Col id="page-content-wrapper">
                         <div className="home">
                             <img
-                                src="../icon-512x512.png"
-                                alt="glazed logo"
-                                className="glazed-logo"
+                                src="../logo-180x200.png"
+                                alt="logo"
+                                className="d-logo"
                             />
-                            <h1>glazed</h1>
+                            <h1>Delivery API</h1>
                         </div>
                     </Col>
                 </Row>

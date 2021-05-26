@@ -8,11 +8,11 @@ export default class Home extends React.Component {
             <Container>
                 <div className="home">
                     <img
-                        src="../icon-512x512.png"
-                        alt="glazed logo"
-                        className="glazed-logo"
+                        src="../logo-180x200.png"
+                        alt="logo"
+                        className="d-logo"
                     />
-                    <h1>glazed</h1>
+                    <h1>Delivery API</h1>
                 </div>
             </Container>
         );

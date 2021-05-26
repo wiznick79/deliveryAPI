@@ -9,13 +9,13 @@ const Navigation = (props) => {
         <Navbar fixed="top" variant="dark" expand="md">
             <Navbar.Brand href="/">
                 <Image
-                    src="/favicon-32x32.png"
+                    src="/logo-180x200.png"
                     width="30"
                     height="30"
                     className="d-inline-block align-top"
-                    alt="Glazed logo"
+                    alt="logo"
                 />{" "}
-                glazed
+                Delivery API
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="top-navbar" />
             <Navbar.Collapse id="top-navbar">

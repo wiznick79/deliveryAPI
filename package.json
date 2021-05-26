@@ -1,9 +1,9 @@
 {
-    "name": "glazed",
+    "name": "delivery-nodejs-api",
     "version": "1.0.0",
-    "description": "Glazed Project",
+    "description": "Delivery API Project",
     "main": "server.js",
-    "repository": "https://github.com/wiznick79/glazed.git",
+    "repository": "https://github.com/wiznick79/deliveryAPI.git",
     "scripts": {
         "start": "node server.js",
         "dev": "nodemon server.js",
