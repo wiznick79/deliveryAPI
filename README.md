@@ -11,7 +11,7 @@ Technologies/libraries/frameworks used:
  - Front-end: Reactjs, React-bootstrap
  - Back-end: Nodejs, Expressjs, Passportjs, MongoDB, Mongoose 
  
-The app is deployed on Heroku platform, for testing,etc : https://glazed-app.herokuapp.com/
+The app is deployed on Heroku platform, for testing,etc : https://delivery-nodejs-api.herokuapp.com/
 
 The available endpoints of the API are:
 
