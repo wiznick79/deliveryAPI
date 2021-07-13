@@ -25,6 +25,6 @@ async function dbinit() {
             console.log(err);
         }
     });
-};
+}
 
 module.exports = { dbinit };
