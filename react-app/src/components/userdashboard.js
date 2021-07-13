@@ -20,13 +20,13 @@ export default class UserDashboard extends React.Component {
           selectedDate: date
         });
         this.getSlots();
-    };
+    }
 
     handleStoreChange(e) {
         this.setState({
             store: e.target.value
         });
-    };
+    }
 
     handleSubmit(e) {
         e.preventDefault();
@@ -36,7 +36,7 @@ export default class UserDashboard extends React.Component {
         const slot = this.state.selectedDate;
 
         axios.post("/delivery/create", { user, store, slot })
-            .then((res )=> {
+            .then((res) => {
                 toast(res.data.message, {
                     type: res.data.type,
                     position: "bottom-center",
@@ -47,13 +47,13 @@ export default class UserDashboard extends React.Component {
                 console.log(error);
             });
         this.getSlots();
-    };
+    }
 
     componentDidMount() {
         this.getSlots();
         this.getStores();
         this.getUser();
-    };
+    }
 
     getUser = () => {
         axios.get("/user")
@@ -61,7 +61,7 @@ export default class UserDashboard extends React.Component {
             const user = res.data;
             this.setState({ user });
         });
-    };
+    }
 
     getSlots = () => {
         axios.get("/slot")
@@ -69,7 +69,7 @@ export default class UserDashboard extends React.Component {
             const slots = res.data;
             this.setState({ slots });
         });
-    };
+    }
 
     getStores = () => {
         axios.get("/store")
@@ -77,7 +77,7 @@ export default class UserDashboard extends React.Component {
             const stores = res.data;
             this.setState({ stores });
         });
-    };
+    }
 
     render() {
         const { user, slots, stores } = this.state;
@@ -165,5 +165,5 @@ export default class UserDashboard extends React.Component {
                 </Row>
             </Container>
         );
-    };
+    }
 }

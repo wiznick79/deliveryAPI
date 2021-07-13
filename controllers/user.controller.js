@@ -27,8 +27,8 @@ function registerUser (req, res) {
     }
     // Check if user is already registered
     else {
-        user = UserModel.findOne({ email: email})
-            .then(user => {
+        user = UserModel.findOne({email: email})
+            .then((user) => {
                 // If email is in use
                 if (user) {
                     errors.push("Email is already registered");
@@ -41,11 +41,11 @@ function registerUser (req, res) {
                         name,
                         email,
                         password,
-                    })
+                    });
                     // Hash the password and save the user in db
                     bcrypt.genSalt(10, (err, salt) => {
                         bcrypt.hash(newUser.password, salt, (err, hash) => {
-                            if (err) throw err;
+                            if (err) { throw err; }
                             newUser.password = hash;
                             console.log(newUser);
                             newUser.save()
@@ -53,7 +53,7 @@ function registerUser (req, res) {
                                     req.flash("success_msg", "Registration successful, please login.");
                                     res.redirect("/user/login");
                                 })
-                                .catch(err => console.log(err));
+                                .catch((err) => console.log(err));
                         })
                     })
                 }

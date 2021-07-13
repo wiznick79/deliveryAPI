@@ -29,7 +29,7 @@ async function getSlot (req, res) {
     try {
         let slot = await SlotModel.findById(id);
         console.log(slot);
-        res.send(slot)
+        res.send(slot);
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
@@ -46,7 +46,7 @@ async function createSlot (req, res) {
     const { date, capacity } = req.body;
     // Checking if the data from the form is valid
     if (!date) {
-        errors = "Please fill in all required fields";
+        let errors = "Please fill in all required fields";
         console.log(errors);
         res.json({type: "error", message: errors});
     }
@@ -56,7 +56,7 @@ async function createSlot (req, res) {
             let slot = await SlotModel.findOne({ date: date });
             // If slot exists
             if (slot) {
-                errors = "There is already a slot at that date&time";
+                let errors = "There is already a slot at that date&time";
                 console.log(errors);
                 res.json({type: "error", message: errors});
             }
@@ -64,13 +64,13 @@ async function createSlot (req, res) {
             else {
                 const newSlot = new SlotModel ({
                     date, capacity
-                })
+                });
                 newSlot.save()
                     .then(() => {
                         console.log(newSlot);
                         res.json({type: "success", message: "Slot created successfully."});
                     })
-                    .catch(err => console.log(err));
+                    .catch((err) => console.log(err));
             }
         } catch(err) {
             console.log(err);
@@ -90,7 +90,7 @@ async function updateSlot (req, res) {
     const { date, capacity } = req.body;
     // Checking if the data from the form is valid
     if (!date) {
-        errors = "Please fill in all required fields";
+        let errors = "Please fill in all required fields";
         console.log(errors);
         res.json({type: "error", message: errors});
     }
@@ -99,7 +99,7 @@ async function updateSlot (req, res) {
             let slot = await SlotModel.findOneAndUpdate(
                 { _id: id },
                 {$set: {date: date, capacity: capacity }},
-                { new: true })
+                { new: true });
             console.log("Updated slot at " + slot.date);
             res.json({type: "success", message: "Slot updated successfully"});
         } catch (err) {

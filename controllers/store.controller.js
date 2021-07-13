@@ -45,17 +45,17 @@ async function createStore (req, res) {
     const { name, horario } = req.body;
     // Checking if the data from the form is valid
     if (!name || !horario) {
-        errors = "Please fill in all required fields";
+        let errors = "Please fill in all required fields";
         console.log(errors);
         res.send(errors);
     }
     // Check if store already exists
     else {
         try {
-            let store = await StoreModel.findOne({ name: name });
+            let store = await StoreModel.findOne({name: name});
             // If store exists
             if (store) {
-                errors = "There is already a store with that name";
+                let errors = "There is already a store with that name";
                 console.log(errors);
                 res.send(errors);
             }
@@ -64,7 +64,7 @@ async function createStore (req, res) {
                 const newStore = new StoreModel ({
                     name,
                     horario
-                })
+                });
                 newStore.save()
                     .then(() => {
                         // req.flash("success_msg", "Store created.");
@@ -73,7 +73,7 @@ async function createStore (req, res) {
                         console.log(name + " created");
                         res.send(name + " created with id: " + newStore.id);
                     })
-                    .catch(err => console.log(err));
+                    .catch((err) => console.log(err));
             }
 
         } catch(err) {
@@ -94,7 +94,7 @@ async function updateStore (req, res) {
     const { name, horario } = req.body;
     // Checking if the data from the form is valid
     if (!name || !horario) {
-        errors = "Please fill in all required fields";
+        let errors = "Please fill in all required fields";
         console.log(errors);
         res.send(errors);
     }

@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Image } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import "./navbar.css";
-import NavbarUser from "./navbarUser"
+import NavbarUser from "./navbarUser";
 
 const Navigation = (props) => {
     return (

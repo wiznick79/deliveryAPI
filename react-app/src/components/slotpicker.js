@@ -15,7 +15,7 @@ const SlotPicker = (props) => {
         includedDates.push(slotDate);
         console.log(slotDate);
 
-    })
+    });
     console.log(includedDates);
     return (
         <div>

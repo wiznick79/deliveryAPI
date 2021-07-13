@@ -10,10 +10,10 @@ function ensureAuthenticated(req, res, next) {
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()) {
         return next();
-    }
-    req.flash('error_msg', 'Please login to view this page');
-    res.redirect('/user/login');
-};
+    };
+    req.flash("error_msg", "Please login to view this page");
+    res.redirect("/user/login");
+}
 
 /**
  * Ensures that there is an authenticated user with admin role.
@@ -27,9 +27,9 @@ function ensureAuthenticatedAdmin(req, res, next) {
     console.log(req.isAuthenticated() && req.user.role === "admin");
     if (req.isAuthenticated() && req.user.role === "admin") {
         return next();
-    }
-    req.flash('error_msg', 'Please login to view this page');
-    res.redirect('/user/login');
-};
+    };
+    req.flash("error_msg", "Please login to view this page");
+    res.redirect("/user/login");
+}
 
-module.exports = { ensureAuthenticated, ensureAuthenticatedAdmin }
+module.exports = { ensureAuthenticated, ensureAuthenticatedAdmin };

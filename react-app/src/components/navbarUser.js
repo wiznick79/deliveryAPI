@@ -7,7 +7,7 @@ export default class NavbarUser extends React.Component {
     constructor(props) {
         super(props);
         this.state = { user: [] };
-    };
+    }
 
     componentDidMount() {
         this.getUser();
@@ -53,6 +53,6 @@ export default class NavbarUser extends React.Component {
                     </Nav>
                 }
             </Nav>
-        )
-    };
+        );
+    }
 }

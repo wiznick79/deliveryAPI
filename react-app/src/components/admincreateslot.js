@@ -21,17 +21,17 @@ export default class AdminCreateSlot extends React.Component {
         this.setState({
           selectedDate: date
         });
-    };
+    }
 
     handleChange(e) {
         this.setState({
             capacity: e.target.value
         });
-    };
+    }
 
     componentDidMount() {
         this.getSlots();
-    };
+    }
 
     getSlots = () => {
         axios.get("/slot")
@@ -39,7 +39,7 @@ export default class AdminCreateSlot extends React.Component {
             const slots = res.data;
             this.setState({ slots });
         });
-    };
+    }
 
     handleSubmit(e) {
         e.preventDefault();
@@ -63,7 +63,7 @@ export default class AdminCreateSlot extends React.Component {
             .catch((error) => {
                 console.log(error);
             });
-    };
+    }
 
     render() {
         const { slots } = this.state;
@@ -72,7 +72,7 @@ export default class AdminCreateSlot extends React.Component {
         slots.forEach((slot) => {
             let slotDate = new Date(slot.date);
             excludedDates.push(slotDate);
-        })
+        });
 
         return (
             <Container fluid>
@@ -121,5 +121,5 @@ export default class AdminCreateSlot extends React.Component {
                 </Row>
             </Container>
         );
-    };
+    }
 }

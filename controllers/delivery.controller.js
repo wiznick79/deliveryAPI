@@ -98,7 +98,7 @@ async function createDelivery(req, res) {
                     slot ,
                     { $inc: {capacity: -1} },
                     { new: true }
-                )
+                );
                 // Decrease previous slot capacity by 1 because the person that
                 // does the delivery needs extra 30 mins to get the product from store
                 var dt = deliverySlot.date;
@@ -107,7 +107,7 @@ async function createDelivery(req, res) {
                     { date: dt },
                     { $inc: {capacity: -1} },
                     { new: true }
-                )
+                );
             }
         } catch (err) {
             console.log(err);
@@ -127,7 +127,7 @@ async function updateDelivery(req, res) {
     const { user, store, slot } = req.body;
     // Checking if the data from the form is valid
     if (!user || !store || !slot) {
-        errors = "Please fill in all required fields";
+        let errors = "Please fill in all required fields";
         console.log(errors);
         res.send(errors);
     } else {
@@ -162,7 +162,7 @@ async function deleteDelivery(req, res) {
             delivery.slot ,
             { $inc: {capacity: 1} },
             { new: true }
-        )
+        );
         // Increase previous slot capacity by 1
         var dt = deliverySlot.date;
         dt.setMinutes(dt.getMinutes()-30);
@@ -170,7 +170,7 @@ async function deleteDelivery(req, res) {
             { date: dt },
             { $inc: {capacity: 1} },
             { new: true }
-        )
+        );
         console.log(msg);
         res.send(msg);
     } catch (err) {

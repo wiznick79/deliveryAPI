@@ -5,12 +5,12 @@ const { ensureAuthenticated, ensureAuthenticatedAdmin } = require("../config/aut
 
 // Get all stores
 router.get("/", ensureAuthenticated, (req, res) => {
-    storeController.getAllStores(req, res)
+    storeController.getAllStores(req, res);
 });
 
 // Get a store by id
 router.get("/:id", ensureAuthenticated, (req, res) => {
-    storeController.getStore(req, res)
+    storeController.getStore(req, res);
 });
 
 // Create new store
