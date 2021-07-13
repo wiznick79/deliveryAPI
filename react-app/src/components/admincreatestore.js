@@ -8,5 +8,5 @@ export default class AdminCreateStore extends React.Component {
                 <p>AdminCreateStore</p>
             </Container>
         );
-    }
+    };
 }

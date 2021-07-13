@@ -1,7 +1,7 @@
 import React from "react";
 import { Nav } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
-import './sidebar.css'
+import "./sidebar.css";
 
 const Sidebar = (props) => {
 

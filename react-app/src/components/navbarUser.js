@@ -6,20 +6,20 @@ import axios from "axios";
 export default class NavbarUser extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { user: [] }
-    }
+        this.state = { user: [] };
+    };
 
     componentDidMount() {
         this.getUser();
-    }
+    };
 
     getUser = () => {
         axios.get("/user")
-        .then(res => {
+        .then((res) => {
             const user = res.data;
             this.setState({ user });
         });
-    }
+    };
 
     render() {
         const { user } = this.state;
@@ -54,5 +54,5 @@ export default class NavbarUser extends React.Component {
                 }
             </Nav>
         )
-    }
+    };
 }

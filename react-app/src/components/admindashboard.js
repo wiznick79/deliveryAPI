@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import './sidebar.css'
-import './home.css'
+import "./sidebar.css"
+import "./home.css"
 
 export default class UserDashboard extends React.Component {
     render()  {
@@ -21,5 +21,5 @@ export default class UserDashboard extends React.Component {
                 </Row>
             </Container>
         );
-    }
+    };
 }

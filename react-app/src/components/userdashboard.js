@@ -2,14 +2,14 @@ import React from "react";
 import { Container, Form, Button, Row } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { ToastContainer, toast, Slide } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 export default class UserDashboard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { user: [], slots: [], stores: [], selectedDate: new Date() }
+        this.state = { user: [], slots: [], stores: [], selectedDate: new Date() };
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleStoreChange = this.handleStoreChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,13 +20,13 @@ export default class UserDashboard extends React.Component {
           selectedDate: date
         });
         this.getSlots();
-    }
+    };
 
     handleStoreChange(e) {
         this.setState({
             store: e.target.value
         });
-    }
+    };
 
     handleSubmit(e) {
         e.preventDefault();
@@ -36,50 +36,50 @@ export default class UserDashboard extends React.Component {
         const slot = this.state.selectedDate;
 
         axios.post("/delivery/create", { user, store, slot })
-            .then(res => {
+            .then((res )=> {
                 toast(res.data.message, {
                     type: res.data.type,
                     position: "bottom-center",
                     autoClose: 5000,
                 });
             })
-            .catch(error => {
+            .catch((error) => {
                 console.log(error);
             });
         this.getSlots();
-    }
+    };
 
     componentDidMount() {
         this.getSlots();
         this.getStores();
         this.getUser();
-    }
+    };
 
     getUser = () => {
         axios.get("/user")
-        .then(res => {
+        .then((res) => {
             const user = res.data;
             this.setState({ user });
         });
-    }
+    };
 
     getSlots = () => {
         axios.get("/slot")
-        .then(res => {
+        .then((res) => {
             const slots = res.data;
             this.setState({ slots });
         });
-    }
+    };
 
     getStores = () => {
         axios.get("/store")
-        .then(res => {
+        .then((res) => {
             const stores = res.data;
             this.setState({ stores });
         });
-    }
+    };
 
-    render()  {
+    render() {
         const { user, slots, stores } = this.state;
 
         const includedDates = [];
@@ -165,5 +165,5 @@ export default class UserDashboard extends React.Component {
                 </Row>
             </Container>
         );
-    }
+    };
 }

@@ -17,7 +17,7 @@ const SlotPicker = (props) => {
 
     })
     console.log(includedDates);
-     return (
+    return (
         <div>
             <div className="formlabel">Date</div>
             <DatePicker
@@ -39,6 +39,6 @@ const SlotPicker = (props) => {
             />
         </div>
     );
-  };
+};
 
 export default SlotPicker;

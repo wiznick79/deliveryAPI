@@ -4,14 +4,14 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
-import { ToastContainer, toast, Slide } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 export default class AdminCreateSlot extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { slots: [], selectedDate: new Date() }
+        this.state = { slots: [], selectedDate: new Date() };
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,26 +20,26 @@ export default class AdminCreateSlot extends React.Component {
     handleDateChange(date) {
         this.setState({
           selectedDate: date
-        })
-    }
+        });
+    };
 
     handleChange(e) {
         this.setState({
             capacity: e.target.value
-        })
-    }
+        });
+    };
 
     componentDidMount() {
         this.getSlots();
-    }
+    };
 
     getSlots = () => {
         axios.get("/slot")
-        .then(res => {
+        .then((res) => {
             const slots = res.data;
             this.setState({ slots });
         });
-    }
+    };
 
     handleSubmit(e) {
         e.preventDefault();
@@ -48,7 +48,7 @@ export default class AdminCreateSlot extends React.Component {
         const capacity = this.state.capacity;
 
         axios.post("/slot/create", { date, capacity })
-            .then(res => {
+            .then((res) => {
                 toast(res.data.message, {
                     type: res.data.type,
                     position: "bottom-center",
@@ -60,10 +60,10 @@ export default class AdminCreateSlot extends React.Component {
                     progress: undefined,
                 });
             })
-            .catch(error => {
+            .catch((error) => {
                 console.log(error);
             });
-    }
+    };
 
     render() {
         const { slots } = this.state;
@@ -121,5 +121,5 @@ export default class AdminCreateSlot extends React.Component {
                 </Row>
             </Container>
         );
-    }
+    };
 }
