@@ -43,8 +43,8 @@ For deliveries:
 -   /delivery/delete/:id (DELETE): to delete a delivery
 
 Notes:
-1.  At this point the admin of the system must be assigned manually by changing the role from the default 'user' to 'admin' in the database (eg. using MongoDB Compass).
-2.  The database connection string must be added in your .env file as DATABASE_URL. Same for PORT.
+1.  At this point the admin of the system must be assigned manually by changing the role from the default 'user' to 'admin' in the database (eg. using MongoDB Compass)
+2.  The database connection string must be added in your .env file as DATABASE_URL. Same for PORT
 3.  To run locally:
     -   'npm run dev' at the root folder to start Nodejs server
     -   'npm start' in the react-app folder to build and run the React app
