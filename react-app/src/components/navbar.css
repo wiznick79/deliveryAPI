@@ -6,15 +6,18 @@ button.link {
     font: inherit;
     color: hsla(0, 0%, 100%, 0.5);
     background: none;
-    border: none;
+    border: 0px solid transparent;
     padding: 0.5rem 0.5rem;
     cursor: pointer;
-    border: 0px solid transparent;
 }
-button.link:hover {
-    color: hsla(0, 0%, 100%, 0.75);
-    background: none;
-    border: 0px solid transparent;
+
+button.link:hover,
+button.link:focus,
+button.link:active {
+    color: hsla(0, 0%, 100%, 0.75) !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
 .btn-space {
