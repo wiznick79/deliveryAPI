@@ -23,7 +23,7 @@ async function dbinit() {
     await Slot.deleteMany({ date : { $lt : Date.now()} }, (err) => {
         if (err) {
             console.log(err);
-        };
+        }
     });
 };
 
