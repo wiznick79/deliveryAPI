@@ -1,3 +1,5 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/5f4c7fc9f28c4e0495da536f55d7e917)](https://www.codacy.com/gh/wiznick79/deliveryAPI/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=wiznick79/deliveryAPI&amp;utm_campaign=Badge_Grade)
+
 # deliveryAPI
 API in Nodejs/Expressjs and web app in Reactjs
 
