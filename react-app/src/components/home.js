@@ -1,6 +1,6 @@
 import React from "react";
-import "./home.css";
 import { Container } from "react-bootstrap";
+import "./home.css";
 
 export default class Home extends React.Component {
     render() {

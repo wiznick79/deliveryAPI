@@ -1,7 +1,7 @@
 import React from "react";
-import "./navbar.css";
 import { Nav, Form, Button } from "react-bootstrap";
 import axios from "axios";
+import "./navbar.css";
 
 export default class NavbarUser extends React.Component {
     constructor(props) {
@@ -39,7 +39,7 @@ export default class NavbarUser extends React.Component {
                             <Nav.Link href="/user/dashboard">Dashboard</Nav.Link>
                         }
                         <Form action="/user/logout" method="POST" id="logout-form">
-                        <Button type="submit" className="link">
+                        <Button type="submit" bsPrefix="link">
                             Logout
                         </Button>
                         </Form>
