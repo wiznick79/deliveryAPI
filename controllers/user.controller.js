@@ -57,7 +57,7 @@ function registerUser (req, res) {
                         });
                     });
                 }
-            })
+            });
     }
 }
 
