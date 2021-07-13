@@ -61,7 +61,7 @@ async function createDelivery(req, res) {
         console.log(errors);
         res.json({type: "error", message: errors});
     }
-    else {        
+    else {
         // Check if delivery already exists
         try {
             let delivery = await DeliveryModel.findOne({
@@ -74,7 +74,7 @@ async function createDelivery(req, res) {
                 console.log(errors);
                 res.json({type: "error", message: errors});
             }
-            // If it doesn't exist, create the delivery
+            // If it doesn"t exist, create the delivery
             else {
                 const newDelivery = new DeliveryModel({
                     user,
@@ -88,9 +88,9 @@ async function createDelivery(req, res) {
                             .populate("user", "name")
                             .populate("store", "name")
                             .populate("slot", "date")
-                            .exec((err, delivery) => {                                
-                                res.json({type: "success", message: `Delivery created successfully on ${slotDate.toLocaleString('pt-PT')}`});
-                            });                        
+                            .exec((err, delivery) => {
+                                res.json({type: "success", message: `Delivery created successfully on ${slotDate.toLocaleString("pt-PT")}`});
+                            });
                     })
                     .catch((err) => console.log(err));
                 // Decrease slot capacity by 1

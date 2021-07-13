@@ -1,5 +1,5 @@
-const bcrypt = require('bcryptjs')
-const UserModel = require('../models/user')
+const bcrypt = require("bcryptjs");
+const UserModel = require("../models/user");
 
 /**
  * Register a new user
@@ -7,23 +7,23 @@ const UserModel = require('../models/user')
  * @param {*} res
  */
 function registerUser (req, res) {
-    console.log(req.body)
-    // get the data from the request's body
+    console.log(req.body);
+    // get the data from the request"s body
     const { name, email, password, password2 } = req.body;
     let errors = [];
     // Checking if the data from the form is valid
     if (!name || !email || !password || !password){
-        errors.push('Please fill in all required fields')
+        errors.push("Please fill in all required fields");
     }
     if (password !== password2) {
-        errors.push('Passwords do not match')
+        errors.push("Passwords do not match");
     }
     if (password.length < 6) {
-        errors.push('Password should be at least 6 chars')
+        errors.push("Password should be at least 6 chars");
     }
     // Show the errors, if they exist
     if (errors.length > 0) {
-        res.redirect('/user/register/?error=' + errors);
+        res.redirect("/user/register/?error=" + errors);
     }
     // Check if user is already registered
     else {
@@ -31,9 +31,9 @@ function registerUser (req, res) {
             .then(user => {
                 // If email is in use
                 if (user) {
-                    errors.push('Email is already registered');
+                    errors.push("Email is already registered");
                     console.log(errors);
-                    res.redirect('/user/register/?error=' + errors);
+                    res.redirect("/user/register/?error=" + errors);
                 }
                 // if there are no users, create a user
                 else {
@@ -50,8 +50,8 @@ function registerUser (req, res) {
                             console.log(newUser);
                             newUser.save()
                                 .then(() => {
-                                    req.flash('success_msg', 'Registration successful, please login.');
-                                    res.redirect('/user/login');
+                                    req.flash("success_msg", "Registration successful, please login.");
+                                    res.redirect("/user/login");
                                 })
                                 .catch(err => console.log(err));
                         })
@@ -67,9 +67,9 @@ function registerUser (req, res) {
  * @param {*} res
  */
 function logoutUser (req, res) {
-    console.log('User logged out');
+    console.log("User logged out");
     req.logout();
-    res.redirect('/user/login');
+    res.redirect("/user/login");
 }
 
-module.exports = { registerUser, logoutUser }
+module.exports = { registerUser, logoutUser };
