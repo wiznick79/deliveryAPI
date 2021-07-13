@@ -17,7 +17,7 @@ async function dbinit() {
                 }
                 console.log("Added admin to roles");
             });
-        };
+        }
     });
     // Deletes old slots
     await Slot.deleteMany({ date : { $lt : Date.now()} }, (err) => {

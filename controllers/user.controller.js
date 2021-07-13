@@ -54,8 +54,8 @@ function registerUser (req, res) {
                                     res.redirect("/user/login");
                                 })
                                 .catch((err) => console.log(err));
-                        })
-                    })
+                        });
+                    });
                 }
             })
     }

@@ -1,7 +1,8 @@
 // Load .env variables when in dev mode
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
-};
+}
+
 // Load Express.js
 const express = require("express");
 const app = express();
@@ -78,5 +79,5 @@ app.use("/", require("./routes/index"));
 // Run web server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`)
+    console.log(`Server started on port ${PORT}`);
 });

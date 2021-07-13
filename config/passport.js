@@ -14,14 +14,14 @@ module.exports = function(passport) {
                     }
                     // if email is registered, check the password
                     bcrypt.compare(password, user.password, (err, isMatch) => {
-                        if (err) throw err;
+                        if (err) { throw err; }
                         if (isMatch) {
                             console.log(user.email + " logged in");
                             return done(null, user);
                         } else {
                             console.log(user.email + " used wrong password");
                             return done(null, false, { message: "Password is incorrect"});
-                        };
+                        }
 
                     });
                 })

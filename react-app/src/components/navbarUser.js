@@ -11,7 +11,7 @@ export default class NavbarUser extends React.Component {
 
     componentDidMount() {
         this.getUser();
-    };
+    }
 
     getUser = () => {
         axios.get("/user")
@@ -19,7 +19,7 @@ export default class NavbarUser extends React.Component {
             const user = res.data;
             this.setState({ user });
         });
-    };
+    }
 
     render() {
         const { user } = this.state;
