@@ -27,7 +27,7 @@ router.post("/register", (req, res) => {
 
 router.get("/", (req, res) => {
     if (req.user) {
-        res.status(200).send({
+        return res.status(200).send({
             id: req.user.id,
             name: req.user.name,
             email: req.user.email,
